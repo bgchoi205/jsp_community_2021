@@ -58,6 +58,13 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 		
+		ResultData actorCanDeleteRd = articleService.actorCanDelete(article.getMemberId(), rq.getLoginedMember());
+		
+		if(actorCanDeleteRd.isFail()) {
+			rq.historyBack(actorCanDeleteRd.getMsg());
+			return;
+		}
+		
 		articleService.delete(id);
 
 		rq.replace(Ut.f("%d번 게시물을 삭제하였습니다.", id), redirectUri);
@@ -138,6 +145,20 @@ public class UsrArticleController extends Controller {
 			rq.historyBack("body를 입력해주세요.");
 			return;
 		}
+		
+		Article article = articleService.getForPrintArticleById(id);
+		
+		if(article == null) {
+			rq.historyBack("존재하지 않는 게시물입니다.");
+			return;
+		}
+		
+		ResultData actorCanModifyRd = articleService.actorCanModify(article.getMemberId(), rq.getLoginedMember());
+		
+		if(actorCanModifyRd.isFail()) {
+			rq.historyBack(actorCanModifyRd.getMsg());
+			return;
+		}
 
 		ResultData modifyRd = articleService.modify(id, title, body);
 
@@ -156,6 +177,13 @@ public class UsrArticleController extends Controller {
 		
 		if ( article == null ) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
+			return;
+		}
+		
+		ResultData actorCanModifyRd = articleService.actorCanModify(article.getMemberId(), rq.getLoginedMember());
+		
+		if(actorCanModifyRd.isFail()) {
+			rq.historyBack(actorCanModifyRd.getMsg());
 			return;
 		}
 
