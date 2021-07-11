@@ -15,7 +15,11 @@
 				</a>
 				<span>게시물 리스트</span>
 			</div>
-
+			
+			<div class="p-2">
+				해당 게시물 수 : ${totalArticlesCount}
+			</div>
+			<hr />
 			<div class="px-4">
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />

@@ -91,7 +91,10 @@ public class UsrArticleController extends Controller {
 
 	private void actionShowList(Rq rq) {
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember());
+		
+		int totalArticlesCount = articleService.getTotalArticlesCount();
 
+		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);
 		rq.jsp("usr/article/list");
 	}
