@@ -51,14 +51,14 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 		
 		if ( article == null ) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
 		
-		ResultData actorCanDeleteRd = articleService.actorCanDelete(article.getMemberId(), rq.getLoginedMember());
+		ResultData actorCanDeleteRd = articleService.actorCanDelete(rq.getLoginedMember(), article);
 		
 		if(actorCanDeleteRd.isFail()) {
 			rq.historyBack(actorCanDeleteRd.getMsg());
@@ -78,7 +78,7 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 		
 		if ( article == null ) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
@@ -146,14 +146,14 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 		
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 		
 		if(article == null) {
 			rq.historyBack("존재하지 않는 게시물입니다.");
 			return;
 		}
 		
-		ResultData actorCanModifyRd = articleService.actorCanModify(article.getMemberId(), rq.getLoginedMember());
+		ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMember(), article);
 		
 		if(actorCanModifyRd.isFail()) {
 			rq.historyBack(actorCanModifyRd.getMsg());
@@ -173,14 +173,14 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 		
 		if ( article == null ) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
 		
-		ResultData actorCanModifyRd = articleService.actorCanModify(article.getMemberId(), rq.getLoginedMember());
+		ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMember(), article);
 		
 		if(actorCanModifyRd.isFail()) {
 			rq.historyBack(actorCanModifyRd.getMsg());

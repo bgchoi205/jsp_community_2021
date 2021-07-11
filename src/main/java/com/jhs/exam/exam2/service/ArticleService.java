@@ -22,8 +22,24 @@ public class ArticleService {
 		return articleRepository.getForPrintArticles();
 	}
 
-	public Article getForPrintArticleById(int id) {
-		return articleRepository.getForPrintArticleById(id);
+	public Article getForPrintArticleById(Member member, int id) {
+		Article article =  articleRepository.getForPrintArticleById(id);
+		
+		updateForPrintData(member, article);
+		
+		return article;
+	}
+
+	private void updateForPrintData(Member actor, Article article) {
+		if(actor == null) {
+			return;
+		}
+		
+		boolean actorCanModify = actorCanModify(actor, article).isSuccess();
+		boolean actorCanDelete = actorCanDelete(actor, article).isSuccess();
+		
+		article.setExtra__actorCanModify(actorCanModify);
+		article.setExtra__actorCanDelete(actorCanDelete);
 	}
 
 	public ResultData delete(int id) {
@@ -38,15 +54,15 @@ public class ArticleService {
 		return ResultData.from("S-1", Ut.f("%d번 게시물이 수정되었습니다.", id), "id", id);
 	}
 
-	public ResultData actorCanModify(int memberId, Member loginedMember) {
-		if(memberId != loginedMember.getId()) {
+	public ResultData actorCanModify(Member loginedMember, Article article) {
+		if(loginedMember.getId() != article.getMemberId()) {
 			return ResultData.from("F-1", "권한이 없습니다.");
 		}
 		return ResultData.from("S-1", "수정 가능");
 	}
 
-	public ResultData actorCanDelete(int memberId, Member loginedMember) {
-		if(memberId != loginedMember.getId()) {
+	public ResultData actorCanDelete(Member loginedMember, Article article) {
+		if(loginedMember.getId() != article.getMemberId()) {
 			return ResultData.from("F-1", "권한이 없습니다.");
 		}
 		return ResultData.from("S-1", "삭제 가능");
