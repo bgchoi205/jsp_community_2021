@@ -31,9 +31,9 @@ public class ArticleService {
 		return articles;
 	}
 	
-	public int getTotalArticlesCount() {
+	public int getTotalArticlesCount(String searchKeywordTypeCode, String searchKeyword) {
 		
-		return articleRepository.getTotalArticlesCount();
+		return articleRepository.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword);
 	}
 
 	public Article getForPrintArticleById(Member member, int id) {

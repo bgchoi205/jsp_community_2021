@@ -30,10 +30,23 @@ public class ArticleRepository {
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON A.memberId = M.id");
 		
-//		if(searchKeyword != null && searchKeyword.length() > 0) {
-//			sql.append("WHERE A.?", searchKeywordTypeCode);
-//			sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
-//		}
+		if(searchKeyword != null && searchKeyword.length() > 0) {
+			switch(searchKeywordTypeCode) {
+			case "title" :
+				sql.append("WHERE A.title");
+				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+				break;
+			case "body" :
+				sql.append("WHERE A.body");
+				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+				break;
+//			case "title,body" :
+//				sql.append("WHERE A.title OR A.body");
+//				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+//				break;
+			}
+			
+		}
 		
 		sql.append("ORDER BY A.id DESC");
 		sql.append("LIMIT ?, ?", startNumber, pageCount);
@@ -79,11 +92,23 @@ public class ArticleRepository {
 		return MysqlUtil.update(sql);
 	}
 
-	public int getTotalArticlesCount() {
+	public int getTotalArticlesCount(String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT COUNT(*)");
-		sql.append("FROM article");
-		
+		sql.append("FROM article AS A");
+		if(searchKeyword != null && searchKeyword.length() > 0) {
+			switch(searchKeywordTypeCode) {
+			case "title" :
+				sql.append("WHERE A.title");
+				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+				break;
+			case "body" :
+				sql.append("WHERE A.body");
+				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+				break;
+			}
+			
+		}
 		return MysqlUtil.selectRowIntValue(sql);
 	}
 }

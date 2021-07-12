@@ -96,7 +96,7 @@ public class UsrArticleController extends Controller {
 		
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, searchKeywordTypeCode, searchKeyword);
 		
-		int totalArticlesCount = articleService.getTotalArticlesCount();
+		int totalArticlesCount = articleService.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword);
 
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);
