@@ -90,7 +90,9 @@ public class UsrArticleController extends Controller {
 	}
 
 	private void actionShowList(Rq rq) {
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember());
+		int page = rq.getIntParam("page", 1);
+		
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page);
 		
 		int totalArticlesCount = articleService.getTotalArticlesCount();
 
