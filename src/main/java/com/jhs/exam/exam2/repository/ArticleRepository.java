@@ -40,10 +40,12 @@ public class ArticleRepository {
 				sql.append("WHERE A.body");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
-//			case "title,body" :
-//				sql.append("WHERE A.title OR A.body");
-//				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
-//				break;
+			case "title,body" :
+				sql.append("WHERE A.title");
+				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+				sql.append("OR A.body");
+				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+				break;
 			}
 			
 		}
