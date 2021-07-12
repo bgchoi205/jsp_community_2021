@@ -91,8 +91,10 @@ public class UsrArticleController extends Controller {
 
 	private void actionShowList(Rq rq) {
 		int page = rq.getIntParam("page", 1);
+		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
+		String searchKeyword = rq.getParam("searchKeyword", "");
 		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page);
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, searchKeywordTypeCode, searchKeyword);
 		
 		int totalArticlesCount = articleService.getTotalArticlesCount();
 

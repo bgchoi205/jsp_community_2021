@@ -22,13 +22,19 @@ public class ArticleRepository {
 		return id;
 	}
 
-	public List<Article> getForPrintArticles(int startNumber, int pageCount) {
+	public List<Article> getForPrintArticles(int startNumber, int pageCount, String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*");
 		sql.append(", IFNULL(M.nickName, '삭제된 회원') AS extra__writerName");
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON A.memberId = M.id");
+		
+//		if(searchKeyword != null && searchKeyword.length() > 0) {
+//			sql.append("WHERE A.?", searchKeywordTypeCode);
+//			sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+//		}
+		
 		sql.append("ORDER BY A.id DESC");
 		sql.append("LIMIT ?, ?", startNumber, pageCount);
 		
