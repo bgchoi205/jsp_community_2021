@@ -106,8 +106,10 @@ public class UsrArticleController extends Controller {
 		int totalBlock = (int)Math.ceil((double)totalPage / pageBlockCount);
 		int curBlock = (int)Math.ceil((double)page / pageBlockCount);
 		int startPage = (curBlock - 1) * pageBlockCount + 1;
-		int endPage = startPage * pageBlockCount;
-		
+		int endPage = startPage + pageBlockCount - 1;
+		if(endPage > totalPage) {
+			endPage = totalPage;
+		}
 		
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);

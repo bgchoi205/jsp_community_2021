@@ -95,7 +95,7 @@
 						<span>${i}</span>&nbsp;
 					</a>
 				</c:forEach>
-				<span>다음</span>
+				<a href="?page=${endPage + 1}">다음</a>
 			</div>
 		</div>
 	</div>
