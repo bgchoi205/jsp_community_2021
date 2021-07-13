@@ -87,6 +87,13 @@
 					<hr />
 				</c:forEach>
 			</div>
+			<div>
+				<c:forEach items="${pages}" var="page">
+					<a href="../article/list?page=${page}" class="btn btn-link">
+						<span>${page}</span>&nbsp;
+					</a>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </section>

@@ -1,5 +1,6 @@
 package com.jhs.exam.exam2.http.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.jhs.exam.exam2.container.Container;
@@ -94,12 +95,19 @@ public class UsrArticleController extends Controller {
 		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
 		String searchKeyword = rq.getParam("searchKeyword", "");
 		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, searchKeywordTypeCode, searchKeyword);
+		int pageCount = 5;
+		
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, pageCount, searchKeywordTypeCode, searchKeyword);
 		
 		int totalArticlesCount = articleService.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword);
-
+		List<Integer> pages = new ArrayList<>();
+		for(int i = 1; i <= (totalArticlesCount / pageCount); i++) {
+			pages.add(i);
+		}
+		
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);
+		rq.setAttr("pages", pages);
 		rq.jsp("usr/article/list");
 	}
 
