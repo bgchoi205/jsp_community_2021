@@ -87,12 +87,15 @@
 					<hr />
 				</c:forEach>
 			</div>
-			<div>
-				<c:forEach items="${pages}" var="page">
-					<a href="../article/list?page=${page}" class="btn btn-link">
-						<span>${page}</span>&nbsp;
+			<div class="my-2 mx-auto">
+				<span>이전</span>
+				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+					<c:set var="aClassStr" value="${i == param.page ? 'font-bold text-red-500' : ''}" />
+					<a href="?page=${i}" class="${aClassStr} p-2 m-2">
+						<span>${i}</span>&nbsp;
 					</a>
 				</c:forEach>
+				<span>다음</span>
 			</div>
 		</div>
 	</div>

@@ -95,19 +95,25 @@ public class UsrArticleController extends Controller {
 		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
 		String searchKeyword = rq.getParam("searchKeyword", "");
 		
-		int pageCount = 5;
+		int articleCountForPage = 5;
 		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, pageCount, searchKeywordTypeCode, searchKeyword);
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, articleCountForPage, searchKeywordTypeCode, searchKeyword);
 		
 		int totalArticlesCount = articleService.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword);
-		List<Integer> pages = new ArrayList<>();
-		for(int i = 1; i <= (totalArticlesCount / pageCount); i++) {
-			pages.add(i);
-		}
+		
+		int totalPage = (int)Math.ceil((double)totalArticlesCount / articleCountForPage);
+		int pageBlockCount = 10;
+		int totalBlock = (int)Math.ceil((double)totalPage / pageBlockCount);
+		int curBlock = (int)Math.ceil((double)page / pageBlockCount);
+		int startPage = (curBlock - 1) * pageBlockCount + 1;
+		int endPage = startPage * pageBlockCount;
+		
 		
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);
-		rq.setAttr("pages", pages);
+		rq.setAttr("totalPage", totalPage);
+		rq.setAttr("startPage", startPage);
+		rq.setAttr("endPage", endPage);
 		rq.jsp("usr/article/list");
 	}
 
