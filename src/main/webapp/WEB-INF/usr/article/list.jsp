@@ -88,14 +88,18 @@
 				</c:forEach>
 			</div>
 			<div class="my-2 mx-auto">
-				<span>이전</span>
+				<c:if test="${startPage > 10}">
+					<a href="?page=${startPage - 1}">이전</a>
+				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<c:set var="aClassStr" value="${i == param.page ? 'font-bold text-red-500' : ''}" />
 					<a href="?page=${i}" class="${aClassStr} p-2 m-2">
 						<span>${i}</span>&nbsp;
 					</a>
 				</c:forEach>
-				<a href="?page=${endPage + 1}">다음</a>
+				<c:if test="${endPage < totalPage}">
+					<a href="?page=${endPage + 1}">다음</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
