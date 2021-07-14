@@ -97,7 +97,7 @@ public class UsrArticleController extends Controller {
 		String searchUri = "";
 		
 		if(searchKeyword != null && searchKeyword.trim().length() > 0) {
-			searchUri = "searchKeywordTypeCode=" + searchKeywordTypeCode + "&" + "searchKeyword=" + searchKeyword;
+			searchUri = "&searchKeywordTypeCode=" + searchKeywordTypeCode + "&" + "searchKeyword=" + searchKeyword;
 		}
 		
 		int articleCountForPage = 5;

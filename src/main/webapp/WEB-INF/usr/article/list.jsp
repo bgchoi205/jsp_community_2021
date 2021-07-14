@@ -26,7 +26,7 @@
 					<form action="list" class="flex">
 					 	<div class="px-2">
 							<div class="form-control">
-							  <input name="searchKeyword" type="text" placeholder="검색어" class="input input-bordered">
+							  <input name="searchKeyword" type="text" placeholder="검색어" class="input input-bordered" value="${searchKeyword}">
 							</div>
 					  	</div>
 						<div class="px-2">
@@ -110,18 +110,18 @@
 					<hr />
 				</c:forEach>
 			</div>
-			<div class="my-2 mx-auto">
+			<div class="my-2 mx-auto btn-group">
 				<c:if test="${startPage > 10}">
-					<a href="?page=${startPage - 1}">이전</a>
+					<a href="?page=${startPage - 1}" class="btn btn-sm">이전</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<c:set var="aClassStr" value="${i == page ? 'font-bold text-red-500' : ''}" />
-					<a href="?page=${i}&${searchUri}" class="${aClassStr} p-2 m-2">
+					<c:set var="aClassStr" value="${i == page ? 'btn-active' : ''}" />
+					<a href="?page=${i}${searchUri}" class="${aClassStr} btn btn-sm">
 						<span>${i}</span>&nbsp;
 					</a>
 				</c:forEach>
 				<c:if test="${endPage < totalPage}">
-					<a href="?page=${endPage + 1}">다음</a>
+					<a href="?page=${endPage + 1}" class="btn btn-sm">다음</a>
 				</c:if>
 			</div>
 		</div>
