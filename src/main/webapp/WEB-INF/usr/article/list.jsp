@@ -22,6 +22,7 @@
 				</div>
 				<div class="flex-grow"></div>
 				<div>
+					
 					<form action="list" class="flex">
 					 	<div class="px-2">
 							<div class="form-control">
@@ -29,14 +30,11 @@
 							</div>
 					  	</div>
 						<div class="px-2">
-						    <select class="select select-bordered w-full max-w-xs">
+						    <select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
 							  <option value="title,body" selected>제목,내용</option> 
 							  <option value="title">제목</option> 
 							  <option value="body">내용</option>
-							</select>		
-						    <script>
-						      document.querySelector('form select[name="searchKeywordTypeCode"]').value = 'body';
-						    </script>
+							</select>
 						</div>
 						<div class="px-2">
 						    <button type="submit" value="Submit" class="btn">검색</button>
@@ -113,6 +111,8 @@
 				</c:forEach>
 			</div>
 			<div class="my-2 mx-auto">
+				<!--  <c:set var="searchUri" value="${searchKeywordTypeCode.length() > 0 && searchKeyword.length() > 0 ? '?searchKeywordTypeCode=%s&searchKeyword=%s&' : '?'}, ${searchKeywordTypeCode}, ${searchKeyword}" />
+				 -->
 				<c:if test="${startPage > 10}">
 					<a href="?page=${startPage - 1}">이전</a>
 				</c:if>
