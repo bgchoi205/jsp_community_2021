@@ -111,14 +111,12 @@
 				</c:forEach>
 			</div>
 			<div class="my-2 mx-auto">
-				<!--  <c:set var="searchUri" value="${searchKeywordTypeCode.length() > 0 && searchKeyword.length() > 0 ? '?searchKeywordTypeCode=%s&searchKeyword=%s&' : '?'}, ${searchKeywordTypeCode}, ${searchKeyword}" />
-				 -->
 				<c:if test="${startPage > 10}">
 					<a href="?page=${startPage - 1}">이전</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<c:set var="aClassStr" value="${i == page ? 'font-bold text-red-500' : ''}" />
-					<a href="?page=${i}" class="${aClassStr} p-2 m-2">
+					<a href="?page=${i}&${searchUri}" class="${aClassStr} p-2 m-2">
 						<span>${i}</span>&nbsp;
 					</a>
 				</c:forEach>
