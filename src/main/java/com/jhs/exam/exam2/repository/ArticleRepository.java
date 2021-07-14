@@ -3,6 +3,7 @@ package com.jhs.exam.exam2.repository;
 import java.util.List;
 
 import com.jhs.exam.exam2.dto.Article;
+import com.jhs.exam.exam2.http.Rq;
 import com.jhs.mysqliutil.MysqlUtil;
 import com.jhs.mysqliutil.SecSql;
 
@@ -22,26 +23,33 @@ public class ArticleRepository {
 		return id;
 	}
 
-	public List<Article> getForPrintArticles(int startNumber, int articleCountForPage, String searchKeywordTypeCode, String searchKeyword) {
+	public List<Article> getForPrintArticles(Rq rq, int startNumber, int articleCountForPage, int boardId, String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*");
 		sql.append(", IFNULL(M.nickName, '삭제된 회원') AS extra__writerName");
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON A.memberId = M.id");
+		sql.append("WHERE 1");
+		
+		
+//		if(getBoardById(boardId) != null) {
+//			
+//		}
+		
 		
 		if(searchKeyword != null && searchKeyword.length() > 0) {
 			switch(searchKeywordTypeCode) {
 			case "title" :
-				sql.append("WHERE A.title");
+				sql.append("AND A.title");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
 			case "body" :
-				sql.append("WHERE A.body");
+				sql.append("AND A.body");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
 			case "title,body" :
-				sql.append("WHERE A.title");
+				sql.append("AND A.title");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				sql.append("OR A.body");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);

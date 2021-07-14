@@ -92,6 +92,7 @@ public class UsrArticleController extends Controller {
 
 	private void actionShowList(Rq rq) {
 		int page = rq.getIntParam("page", 1);
+		int boardId = rq.getIntParam("boardId", 0);
 		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
 		String searchKeyword = rq.getParam("searchKeyword", "");
 		String searchUri = "";
@@ -102,7 +103,7 @@ public class UsrArticleController extends Controller {
 		
 		int articleCountForPage = 5;
 		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, articleCountForPage, searchKeywordTypeCode, searchKeyword);
+		List<Article> articles = articleService.getForPrintArticles(rq, rq.getLoginedMember(), page, boardId, articleCountForPage, searchKeywordTypeCode, searchKeyword);
 		
 		int totalArticlesCount = articleService.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword);
 		

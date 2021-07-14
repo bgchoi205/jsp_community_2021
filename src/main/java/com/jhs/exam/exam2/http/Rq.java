@@ -174,4 +174,7 @@ public class Rq {
 	public String getActionPath() {
 		return "/" + controllerTypeName + "/" + controllerName + "/" + actionMethodName;
 	}
+
+
+	
 }

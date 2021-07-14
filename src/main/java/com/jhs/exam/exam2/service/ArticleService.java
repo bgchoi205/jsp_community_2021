@@ -6,6 +6,7 @@ import com.jhs.exam.exam2.container.Container;
 import com.jhs.exam.exam2.dto.Article;
 import com.jhs.exam.exam2.dto.Member;
 import com.jhs.exam.exam2.dto.ResultData;
+import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.repository.ArticleRepository;
 import com.jhs.exam.exam2.util.Ut;
 
@@ -18,11 +19,11 @@ public class ArticleService {
 		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), "id", id);
 	}
 
-	public List<Article> getForPrintArticles( Member actor, int page, int articleCountForPage, String searchKeywordTypeCode, String searchKeyword) {
+	public List<Article> getForPrintArticles(Rq rq, Member actor, int page, int boardId, int articleCountForPage, String searchKeywordTypeCode, String searchKeyword) {
 		
 		int startNumber = (page - 1) * articleCountForPage;
 		
-		List<Article> articles =  articleRepository.getForPrintArticles(startNumber, articleCountForPage, searchKeywordTypeCode, searchKeyword);
+		List<Article> articles =  articleRepository.getForPrintArticles(rq, startNumber, articleCountForPage, boardId, searchKeywordTypeCode, searchKeyword);
 		
 		for(Article article : articles) {
 			updateForPrintData(actor, article);
