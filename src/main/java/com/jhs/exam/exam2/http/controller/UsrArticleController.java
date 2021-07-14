@@ -111,6 +111,7 @@ public class UsrArticleController extends Controller {
 			endPage = totalPage;
 		}
 		
+		rq.setAttr("page", page);
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);
 		rq.setAttr("totalPage", totalPage);

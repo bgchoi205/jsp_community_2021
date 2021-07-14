@@ -16,8 +16,33 @@
 				<span>게시물 리스트</span>
 			</div>
 			
-			<div class="p-2">
-				해당 게시물 수 : ${totalArticlesCount}
+			<div class="p-2 flex items-center">
+				<div>
+					해당 게시물 수 : ${totalArticlesCount}
+				</div>
+				<div class="flex-grow"></div>
+				<div>
+					<form action="list" class="flex">
+					 	<div class="px-2">
+							<div class="form-control">
+							  <input name="searchKeyword" type="text" placeholder="검색어" class="input input-bordered">
+							</div>
+					  	</div>
+						<div class="px-2">
+						    <select class="select select-bordered w-full max-w-xs">
+							  <option value="title,body" selected>제목,내용</option> 
+							  <option value="title">제목</option> 
+							  <option value="body">내용</option>
+							</select>		
+						    <script>
+						      document.querySelector('form select[name="searchKeywordTypeCode"]').value = 'body';
+						    </script>
+						</div>
+						<div class="px-2">
+						    <button type="submit" value="Submit" class="btn">검색</button>
+						</div>
+					</form>
+				</div>
 			</div>
 			<hr />
 			<div class="px-4">
@@ -92,7 +117,7 @@
 					<a href="?page=${startPage - 1}">이전</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<c:set var="aClassStr" value="${i == param.page ? 'font-bold text-red-500' : ''}" />
+					<c:set var="aClassStr" value="${i == page ? 'font-bold text-red-500' : ''}" />
 					<a href="?page=${i}" class="${aClassStr} p-2 m-2">
 						<span>${i}</span>&nbsp;
 					</a>
