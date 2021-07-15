@@ -23,12 +23,8 @@
 				<div class="flex-grow"></div>
 				<div>
 					
-					<form action="list" class="flex">
-					 	<div class="px-2">
-							<div class="form-control">
-							  <input name="searchKeyword" type="text" placeholder="검색어" class="input input-bordered" value="${searchKeyword}">
-							</div>
-					  	</div>
+					<form action="../article/list" class="flex">
+						<input name="boardId" type="hidden" value="${param.boardId}">
 						<div class="px-2">
 						    <select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
 							  <option value="title,body" selected>제목,내용</option> 
@@ -36,6 +32,11 @@
 							  <option value="body">내용</option>
 							</select>
 						</div>
+						<div class="px-2">
+							<div class="form-control">
+							  <input name="searchKeyword" type="text" placeholder="검색어" class="input input-bordered" value="${searchKeyword}">
+							</div>
+					  	</div>
 						<div class="px-2">
 						    <button type="submit" value="Submit" class="btn">검색</button>
 						</div>
@@ -112,16 +113,16 @@
 			</div>
 			<div class="my-2 mx-auto btn-group">
 				<c:if test="${startPage > 10}">
-					<a href="?page=${startPage - 1}${baseUri}" class="btn btn-sm">이전</a>
+					<a href="${baseUri}page=${startPage - 1}" class="btn btn-sm">이전</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<c:set var="aClassStr" value="${i == page ? 'btn-active' : ''}" />
-					<a href="?page=${i}${baseUri}" class="${aClassStr} btn btn-sm">
+					<a href="${baseUri}page=${i}" class="${aClassStr} btn btn-sm">
 						<span>${i}</span>&nbsp;
 					</a>
 				</c:forEach>
 				<c:if test="${endPage < totalPage}">
-					<a href="?page=${endPage + 1}${baseUri}" class="btn btn-sm">다음</a>
+					<a href="${baseUri}page=${endPage + 1}" class="btn btn-sm">다음</a>
 				</c:if>
 			</div>
 		</div>

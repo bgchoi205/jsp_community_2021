@@ -98,9 +98,9 @@ public class UsrArticleController extends Controller {
 		int boardId = rq.getIntParam("boardId", 0);
 		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
 		String searchKeyword = rq.getParam("searchKeyword", "");
-		String baseUri = "";
-		String searchUri = "&searchKeywordTypeCode=" + searchKeywordTypeCode + "&searchKeyword=" + searchKeyword;
-		String boardUri = "&boardId=" + boardId;
+		String baseUri = "?";
+		String searchUri = "searchKeywordTypeCode=" + searchKeywordTypeCode + "&searchKeyword=" + searchKeyword + "&";
+		String boardUri = "boardId=" + boardId + "&";
 		
 		if(boardId != 0) {
 			Board board = boardService.getBoardById(boardId);
@@ -147,7 +147,7 @@ public class UsrArticleController extends Controller {
 		
 		
 		rq.setAttr("page", page);
-		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);
+		rq.setAttr("boardId", boardId);
 		rq.setAttr("searchKeyword", searchKeyword);
 		rq.setAttr("baseUri", baseUri);
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
