@@ -18,18 +18,24 @@
 			
 			<div class="p-2 flex items-center">
 				<div>
-					해당 게시물 수 : ${totalArticlesCount}
+					<c:if test="${param.searchKeyword == null }">
+						게시물 수 : ${totalArticlesCount}
+					</c:if>
+					<c:if test="${param.searchKeyword != null }">
+						`${searchKeyword}` 검색결과 게시물 수 : ${totalArticlesCount}
+					</c:if>
 				</div>
 				<div class="flex-grow"></div>
 				<div>
-					
 					<form action="../article/list" class="flex">
-						<input name="boardId" type="hidden" value="${param.boardId}">
+						<c:if test="${boardId != 0}">
+							<input name="boardId" type="hidden" value="${boardId}">
+						</c:if>
 						<div class="px-2">
 						    <select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
-							  <option value="title,body" selected>제목,내용</option> 
-							  <option value="title">제목</option> 
-							  <option value="body">내용</option>
+								<option value="title,body" <c:if test="${param.searchKeywordTypeCode eq 'title,body'}">selected='selected'</c:if>>제목,내용</option> 
+								<option value="title" <c:if test="${param.searchKeywordTypeCode eq 'title'}">selected='selected'</c:if>>제목</option> 
+								<option value="body" <c:if test="${param.searchKeywordTypeCode eq 'body'}">selected='selected'</c:if>>내용</option>
 							</select>
 						</div>
 						<div class="px-2">

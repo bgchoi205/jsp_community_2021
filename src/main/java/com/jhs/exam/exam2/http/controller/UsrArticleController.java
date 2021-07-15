@@ -110,14 +110,13 @@ public class UsrArticleController extends Controller {
 				return;
 			}
 		}
-		
+
+		if(boardId != 0) {
+			baseUri = baseUri + boardUri;
+		}
 		
 		if(searchKeyword != null && searchKeyword.trim().length() > 0) {
 			baseUri = baseUri + searchUri;
-		}
-		
-		if(boardId != 0) {
-			baseUri = baseUri + boardUri;
 		}
 		
 		int articleCountForPage = 5;
@@ -149,6 +148,7 @@ public class UsrArticleController extends Controller {
 		rq.setAttr("page", page);
 		rq.setAttr("boardId", boardId);
 		rq.setAttr("searchKeyword", searchKeyword);
+		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);
 		rq.setAttr("baseUri", baseUri);
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);
