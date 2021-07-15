@@ -117,7 +117,9 @@ public class ArticleRepository {
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
 			case "title,body" :
-				sql.append("AND A.title OR A.body");
+				sql.append("AND A.title");
+				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
+				sql.append("OR A.body");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
 			}
