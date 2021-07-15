@@ -31,13 +31,7 @@ public class ArticleRepository {
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON A.memberId = M.id");
 		sql.append("WHERE 1");
-		
-		
-//		if(getBoardById(boardId) != null) {
-//			
-//		}
-		
-		
+	
 		if(searchKeyword != null && searchKeyword.length() > 0) {
 			switch(searchKeywordTypeCode) {
 			case "title" :
@@ -56,6 +50,10 @@ public class ArticleRepository {
 				break;
 			}
 			
+		}
+		
+		if(boardId != 0) {
+			sql.append("AND A.boardId = ?", boardId);
 		}
 		
 		sql.append("ORDER BY A.id DESC");
@@ -102,27 +100,34 @@ public class ArticleRepository {
 		return MysqlUtil.update(sql);
 	}
 
-	public int getTotalArticlesCount(String searchKeywordTypeCode, String searchKeyword) {
+	public int getTotalArticlesCount(String searchKeywordTypeCode, String searchKeyword, int boardId) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT COUNT(*)");
 		sql.append("FROM article AS A");
+		sql.append("WHERE 1");
+		
 		if(searchKeyword != null && searchKeyword.length() > 0) {
 			switch(searchKeywordTypeCode) {
 			case "title" :
-				sql.append("WHERE A.title");
+				sql.append("AND A.title");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
 			case "body" :
-				sql.append("WHERE A.body");
+				sql.append("AND A.body");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
 			case "title,body" :
-				sql.append("WHERE A.title OR A.body");
+				sql.append("AND A.title OR A.body");
 				sql.append("LIKE CONCAT ('%', ?, '%')", searchKeyword);
 				break;
 			}
 			
 		}
+		
+		if(boardId != 0) {
+			sql.append("AND A.boardId = ?", boardId);
+		}
+		
 		return MysqlUtil.selectRowIntValue(sql);
 	}
 }

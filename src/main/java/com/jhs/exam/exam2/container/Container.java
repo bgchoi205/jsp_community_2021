@@ -6,8 +6,10 @@ import com.jhs.exam.exam2.interceptor.BeforeActionInterceptor;
 import com.jhs.exam.exam2.interceptor.NeedLoginInterceptor;
 import com.jhs.exam.exam2.interceptor.NeedLogoutInterceptor;
 import com.jhs.exam.exam2.repository.ArticleRepository;
+import com.jhs.exam.exam2.repository.BoardRepository;
 import com.jhs.exam.exam2.repository.MemberRepository;
 import com.jhs.exam.exam2.service.ArticleService;
+import com.jhs.exam.exam2.service.BoardService;
 import com.jhs.exam.exam2.service.MemberService;
 
 public class Container {
@@ -23,12 +25,17 @@ public class Container {
 	public static MemberService memberService;
 	public static UsrMemberController usrMemberController;
 	
+	public static BoardRepository boardRepository;
+	public static BoardService boardService;
+	
 	public static void init() {
 		articleRepository = new ArticleRepository();
 		memberRepository = new MemberRepository();
+		boardRepository = new BoardRepository();
 		
 		articleService = new ArticleService();
 		memberService = new MemberService();
+		boardService = new BoardService();
 		
 		beforeActionInterceptor = new BeforeActionInterceptor();
 		needLoginInterceptor = new NeedLoginInterceptor();

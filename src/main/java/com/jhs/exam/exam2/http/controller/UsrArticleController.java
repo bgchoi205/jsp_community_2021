@@ -5,13 +5,16 @@ import java.util.List;
 
 import com.jhs.exam.exam2.container.Container;
 import com.jhs.exam.exam2.dto.Article;
+import com.jhs.exam.exam2.dto.Board;
 import com.jhs.exam.exam2.dto.ResultData;
 import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.service.ArticleService;
+import com.jhs.exam.exam2.service.BoardService;
 import com.jhs.exam.exam2.util.Ut;
 
 public class UsrArticleController extends Controller {
 	private ArticleService articleService = Container.articleService;
+	private BoardService boardService = Container.boardService;
 
 	@Override
 	public void performAction(Rq rq) {
@@ -95,17 +98,33 @@ public class UsrArticleController extends Controller {
 		int boardId = rq.getIntParam("boardId", 0);
 		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
 		String searchKeyword = rq.getParam("searchKeyword", "");
-		String searchUri = "";
+		String baseUri = "";
+		String searchUri = "&searchKeywordTypeCode=" + searchKeywordTypeCode + "&searchKeyword=" + searchKeyword;
+		String boardUri = "&boardId=" + boardId;
+		
+		if(boardId != 0) {
+			Board board = boardService.getBoardById(boardId);
+			
+			if(board == null) {
+				rq.historyBack(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
+				return;
+			}
+		}
+		
 		
 		if(searchKeyword != null && searchKeyword.trim().length() > 0) {
-			searchUri = "&searchKeywordTypeCode=" + searchKeywordTypeCode + "&" + "searchKeyword=" + searchKeyword;
+			baseUri = baseUri + searchUri;
+		}
+		
+		if(boardId != 0) {
+			baseUri = baseUri + boardUri;
 		}
 		
 		int articleCountForPage = 5;
 		
 		List<Article> articles = articleService.getForPrintArticles(rq, rq.getLoginedMember(), page, boardId, articleCountForPage, searchKeywordTypeCode, searchKeyword);
 		
-		int totalArticlesCount = articleService.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword);
+		int totalArticlesCount = articleService.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword, boardId);
 		
 		int totalPage = (int)Math.ceil((double)totalArticlesCount / articleCountForPage);
 		int pageBlockCount = 10;
@@ -130,7 +149,7 @@ public class UsrArticleController extends Controller {
 		rq.setAttr("page", page);
 		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);
 		rq.setAttr("searchKeyword", searchKeyword);
-		rq.setAttr("searchUri", searchUri);
+		rq.setAttr("baseUri", baseUri);
 		rq.setAttr("totalArticlesCount", totalArticlesCount);
 		rq.setAttr("articles", articles);
 		rq.setAttr("totalPage", totalPage);

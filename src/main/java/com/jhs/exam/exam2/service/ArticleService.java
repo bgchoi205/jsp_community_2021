@@ -32,9 +32,9 @@ public class ArticleService {
 		return articles;
 	}
 	
-	public int getTotalArticlesCount(String searchKeywordTypeCode, String searchKeyword) {
+	public int getTotalArticlesCount(String searchKeywordTypeCode, String searchKeyword, int boardId) {
 		
-		return articleRepository.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword);
+		return articleRepository.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword, boardId);
 	}
 
 	public Article getForPrintArticleById(Member member, int id) {

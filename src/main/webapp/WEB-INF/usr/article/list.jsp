@@ -112,16 +112,16 @@
 			</div>
 			<div class="my-2 mx-auto btn-group">
 				<c:if test="${startPage > 10}">
-					<a href="?page=${startPage - 1}" class="btn btn-sm">이전</a>
+					<a href="?page=${startPage - 1}${baseUri}" class="btn btn-sm">이전</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<c:set var="aClassStr" value="${i == page ? 'btn-active' : ''}" />
-					<a href="?page=${i}${searchUri}" class="${aClassStr} btn btn-sm">
+					<a href="?page=${i}${baseUri}" class="${aClassStr} btn btn-sm">
 						<span>${i}</span>&nbsp;
 					</a>
 				</c:forEach>
 				<c:if test="${endPage < totalPage}">
-					<a href="?page=${endPage + 1}" class="btn btn-sm">다음</a>
+					<a href="?page=${endPage + 1}${baseUri}" class="btn btn-sm">다음</a>
 				</c:if>
 			</div>
 		</div>
