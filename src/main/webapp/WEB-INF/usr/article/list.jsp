@@ -119,7 +119,10 @@
 			</div>
 			<div class="my-2 mx-auto btn-group">
 				<c:if test="${startPage > 10}">
-					<a href="${baseUri}page=${startPage - 1}" class="btn btn-sm">이전</a>
+					<a href="${baseUri}page=1" class="btn btn-sm">＜＜처음</a>
+				</c:if>
+				<c:if test="${startPage > 10}">
+					<a href="${baseUri}page=${startPage - 1}" class="btn btn-sm">＜이전</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<c:set var="aClassStr" value="${i == page ? 'btn-active' : ''}" />
@@ -128,7 +131,10 @@
 					</a>
 				</c:forEach>
 				<c:if test="${endPage < totalPage}">
-					<a href="${baseUri}page=${endPage + 1}" class="btn btn-sm">다음</a>
+					<a href="${baseUri}page=${endPage + 1}" class="btn btn-sm">다음＞</a>
+				</c:if>
+				<c:if test="${endPage < totalPage}">
+					<a href="${baseUri}page=${totalPage}" class="btn btn-sm">끝＞＞</a>
 				</c:if>
 			</div>
 		</div>
