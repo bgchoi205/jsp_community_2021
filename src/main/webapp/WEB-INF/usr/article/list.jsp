@@ -32,11 +32,25 @@
 							<input name="boardId" type="hidden" value="${boardId}">
 						</c:if>
 						<div class="px-2">
-						    <select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
+						    <%-- <select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
 								<option value="title,body" <c:if test="${param.searchKeywordTypeCode eq 'title,body'}">selected='selected'</c:if>>제목,내용</option> 
 								<option value="title" <c:if test="${param.searchKeywordTypeCode eq 'title'}">selected='selected'</c:if>>제목</option> 
 								<option value="body" <c:if test="${param.searchKeywordTypeCode eq 'body'}">selected='selected'</c:if>>내용</option>
+							</select> --%>
+							<select name="searchKeywordTypeCode" class="sktc select select-bordered w-full max-w-xs">
+								<option value="title,body">제목,내용</option> 
+								<option value="title">제목</option> 
+								<option value="body">내용</option>
 							</select>
+							<script type="text/javascript">
+								const $searchSelect = $('select[name="searchKeywordTypeCode"]');
+								if('${param.searchKeywordTypeCode}'){
+									$searchSelect.val('${param.searchKeywordTypeCode}');
+								}else{
+									$searchSelect.val('title,body');
+								}
+								
+							</script>
 						</div>
 						<div class="px-2">
 							<div class="form-control">
