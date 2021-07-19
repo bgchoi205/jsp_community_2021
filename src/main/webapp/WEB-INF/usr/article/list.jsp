@@ -37,7 +37,7 @@
 								<option value="title" <c:if test="${param.searchKeywordTypeCode eq 'title'}">selected='selected'</c:if>>제목</option> 
 								<option value="body" <c:if test="${param.searchKeywordTypeCode eq 'body'}">selected='selected'</c:if>>내용</option>
 							</select> --%>
-							<select name="searchKeywordTypeCode" class="sktc select select-bordered w-full max-w-xs">
+							<select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
 								<option value="title,body">제목,내용</option> 
 								<option value="title">제목</option> 
 								<option value="body">내용</option>
@@ -49,7 +49,6 @@
 								}else{
 									$searchSelect.val('title,body');
 								}
-								
 							</script>
 						</div>
 						<div class="px-2">
@@ -132,10 +131,10 @@
 				</c:forEach>
 			</div>
 			<div class="my-2 mx-auto btn-group">
-				<c:if test="${startPage > 10}">
+				<c:if test="${startPage > pageBlockCount}">
 					<a href="${baseUri}page=1" class="btn btn-sm">＜＜처음</a>
 				</c:if>
-				<c:if test="${startPage > 10}">
+				<c:if test="${startPage > pageBlockCount}">
 					<a href="${baseUri}page=${startPage - 1}" class="btn btn-sm">＜이전</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">

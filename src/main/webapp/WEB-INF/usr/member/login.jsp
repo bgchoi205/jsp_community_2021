@@ -44,14 +44,14 @@
 				</script>
 				<form action="../member/doLogin" method="POST"
 					onsubmit="MemberLogin__submit(this); return false;">
-					
+					<input type="hidden" name="redirectURI" value="${referer }" />
 					<div class="form-control">
 						<label class="label">
 							<span class="label-text">로그인아이디</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="loginId" type="text" placeholder="로그인아이디를 입력해주세요." />
+								name="loginId" type="text" placeholder="로그인아이디를 입력해주세요."/>
 						</div>
 					</div>
 

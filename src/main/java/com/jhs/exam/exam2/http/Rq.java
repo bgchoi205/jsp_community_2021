@@ -175,6 +175,10 @@ public class Rq {
 		return "/" + controllerTypeName + "/" + controllerName + "/" + actionMethodName;
 	}
 
+	public String getHeader() {
+		return (String)req.getHeader("Referer");
+	}
+
 
 	
 }

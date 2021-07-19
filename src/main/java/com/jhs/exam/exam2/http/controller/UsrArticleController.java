@@ -126,7 +126,7 @@ public class UsrArticleController extends Controller {
 		int totalArticlesCount = articleService.getTotalArticlesCount(searchKeywordTypeCode, searchKeyword, boardId);
 		
 		int totalPage = (int)Math.ceil((double)totalArticlesCount / articleCountForPage);
-		int pageBlockCount = 10;
+		int pageBlockCount = 5;
 		int curBlock = (int)Math.ceil((double)page / pageBlockCount);
 		int startPage = (curBlock - 1) * pageBlockCount + 1;
 		int endPage = startPage + pageBlockCount - 1;
@@ -146,6 +146,7 @@ public class UsrArticleController extends Controller {
 		
 		
 		rq.setAttr("page", page);
+		rq.setAttr("pageBlockCount", pageBlockCount);
 		rq.setAttr("boardId", boardId);
 		rq.setAttr("searchKeyword", searchKeyword);
 		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);
