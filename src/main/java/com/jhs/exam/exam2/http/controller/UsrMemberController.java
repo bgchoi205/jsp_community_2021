@@ -60,7 +60,7 @@ public class UsrMemberController extends Controller {
 
 		rq.setSessionAttr("loginedMemberJson", Ut.toJson(member, ""));
 		
-		if(redirectURI.length() == 0) {
+		if(redirectURI.trim().length() == 0) {
 			rq.replace(loginRd.getMsg(), "../article/list");
 			return;
 		}
@@ -72,12 +72,6 @@ public class UsrMemberController extends Controller {
 	private void actionShowLogin(Rq rq) {
 		
 		String referer = rq.getHeader();
-		
-		if(referer == null) {
-			rq.printf("referer 없음");
-		}else {
-			rq.printf(referer);
-		}
 		
 		rq.setAttr("referer", referer);
 		rq.jsp("usr/member/login");

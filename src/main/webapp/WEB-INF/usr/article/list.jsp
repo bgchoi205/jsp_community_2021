@@ -44,7 +44,7 @@
 							</select>
 							<script type="text/javascript">
 								const $searchSelect = $('select[name="searchKeywordTypeCode"]');
-								if('${param.searchKeywordTypeCode}'){
+								if('${param.searchKeywordTypeCode}'.trim().length > 0){
 									$searchSelect.val('${param.searchKeywordTypeCode}');
 								}else{
 									$searchSelect.val('title,body');

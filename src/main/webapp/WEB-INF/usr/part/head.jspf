@@ -103,7 +103,7 @@
 					</c:if>
 					<c:if test="${rq.logined}">
 						<li>
-							<a href="../member/doLogout"
+							<a onclick="if ( !confirm('로그아웃 하시겠습니까?') ) return false;" href="../member/doLogout"
 								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 								<span>
 									<i class="fas fa-sign-out-alt"></i>
