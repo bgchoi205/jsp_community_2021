@@ -15,7 +15,13 @@
 				</a>
 				<span>게시물 리스트</span>
 			</div>
-			
+			<div class="p-2 flex items-center">
+				<a href="../article/write" role="button" class="btn btn-sm btn-primary">
+					<span><i class="fas fa-pen"></i></span>
+					<span class="pl-1">글쓰기</span>
+				</a>
+			</div>
+			<hr />
 			<div class="p-2 flex items-center">
 				<div>
 					<c:if test="${param.searchKeyword == null }">
