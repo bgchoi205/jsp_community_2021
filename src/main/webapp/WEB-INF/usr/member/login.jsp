@@ -44,7 +44,7 @@
 				</script>
 				<form action="../member/doLogin" method="POST"
 					onsubmit="MemberLogin__submit(this); return false;">
-					<input type="hidden" name="redirectURI" value="${referer }" />
+					<input type="hidden" name="redirectURI" value="${param.afterLoginUri}" />
 					<div class="form-control">
 						<label class="label">
 							<span class="label-text">로그인아이디</span>
