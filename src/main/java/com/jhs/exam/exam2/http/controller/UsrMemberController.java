@@ -36,7 +36,7 @@ public class UsrMemberController extends Controller {
 	private void actionDoLogin(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
 		String loginPw = rq.getParam("loginPw", "");
-		String redirectURI = rq.getParam("redirectURI", "../article/list");
+		String redirectUri = rq.getParam("redirectUri", "../article/list");
 
 		if (loginId.length() == 0) {
 			rq.historyBack("loginId를 입력해주세요.");
@@ -62,15 +62,15 @@ public class UsrMemberController extends Controller {
 		
 		
 		
-		rq.replace(loginRd.getMsg(), redirectURI);
+		rq.replace(loginRd.getMsg(), redirectUri);
 		
 	}
 
 	private void actionShowLogin(Rq rq) {
 		
 //		String referer = rq.getHeader();
-//		
 //		rq.setAttr("referer", referer);
+		
 		rq.jsp("usr/member/login");
 	}
 }
