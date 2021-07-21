@@ -7,8 +7,29 @@
 
 <section class="section section-article-write px-4">
 	<div class="container mx-auto">
-		메인
-		
+		<div class="card bordered shadow-lg">
+			<div class="card-title">
+				<a href="javascript:history.back();" class="cursor-pointer">
+					<i class="fas fa-chevron-left"></i>
+				</a>
+				<span>홈</span>
+			</div>
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit repellendus illum excepturi possimus quis illo distinctio perspiciatis laboriosam odit accusamus enim nisi nam eos nihil dolore itaque porro quidem ipsum?
+			</div>
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis earum aliquam nobis fugit dolorem ullam magni est optio porro repudiandae iste sed quam vitae rem natus. Totam culpa dolore maiores.
+			</div>
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae laborum omnis nam nesciunt magni fugit aperiam itaque ratione minus reprehenderit! Assumenda labore at illum quidem laudantium voluptates nulla in facilis!
+			</div>
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore cupiditate repudiandae! Iste inventore laudantium nam tempora porro modi consectetur deleniti omnis quidem consequatur et dolor atque ab? Perferendis obcaecati quasi.
+			</div>
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquid doloremque magni hic officiis unde obcaecati a quo dolorem tempore reprehenderit pariatur est illo architecto debitis commodi cum deserunt magnam.
+			</div>
+		</div>
 	</div>
 </section>
 
