@@ -124,8 +124,8 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS dataInsert$$
 CREATE PROCEDURE dataInsert() #함수 생성
 BEGIN #시작    
-DECLARE i INT DEFAULT 3; #i값 생성        
-WHILE(i<100) DO #while문         
+DECLARE i INT DEFAULT 4; #i값 생성        
+WHILE(i<210) DO #while문         
 INSERT INTO article (regDate, updateDate, memberid, boardId, title, `body`) 
 VALUE (NOW(), NOW(), i % 2 + 1, i % 2 + 1, CONCAT('제목',i), CONCAT('내용',i));       
 SET i=i+1;        

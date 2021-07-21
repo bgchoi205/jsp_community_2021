@@ -79,7 +79,7 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 								<span> <i class="fas fa-sign-in-alt"></i>
 							</span> <span class="hidden sm:block">&nbsp;LOGIN</span>
 						</a></li>
-						<li><a href="#"
+						<li><a href="../member/join"
 							class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 								<span> <i class="fas fa-user-plus"></i>
 							</span> <span class="hidden sm:block">&nbsp;JOIN</span>
