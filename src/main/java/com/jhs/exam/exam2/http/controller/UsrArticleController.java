@@ -160,11 +160,16 @@ public class UsrArticleController extends Controller {
 	}
 
 	private void actionDoWrite(Rq rq) {
-		int boardId = 2;
+		int boardId = rq.getIntParam("boardId", 0);
 		int memberId = rq.getLoginedMemberId();
 		String title = rq.getParam("title", "");
 		String body = rq.getParam("body", "");
 		String redirectUri = rq.getParam("redirectUri", "../article/list");
+		
+		if (boardId == 0) {
+			rq.historyBack("boardId를 입력해주세요.");
+			return;
+		}
 
 		if (title.length() == 0) {
 			rq.historyBack("title을 입력해주세요.");
@@ -173,6 +178,13 @@ public class UsrArticleController extends Controller {
 
 		if (body.length() == 0) {
 			rq.historyBack("body를 입력해주세요.");
+			return;
+		}
+		
+		Board board = boardService.getBoardById(boardId);
+		
+		if(board == null) {
+			rq.historyBack("존재하지 않는 게시판입니다.");
 			return;
 		}
 
@@ -185,6 +197,9 @@ public class UsrArticleController extends Controller {
 	}
 
 	private void actionShowWrite(Rq rq) {
+		List<Board> boards = boardService.getBoards();
+		
+		rq.setAttr("boards", boards);
 		rq.jsp("usr/article/write");
 	}
 	

@@ -13,7 +13,7 @@
 				<a href="javascript:history.back();" class="cursor-pointer">
 					<i class="fas fa-chevron-left"></i>
 				</a>
-				<span>게시물 상세페이지</span>
+				<span>게시물 작성</span>
 			</div>
 
 			<div class="px-4 py-4">
@@ -21,6 +21,13 @@
 					let ArticleWrite__submitDone = false;
 					function ArticleWrite__submit(form) {
 						if (ArticleWrite__submitDone) {
+							return;
+						}
+						
+						if (form.boardId.value == "0") {
+							alert('게시판을 선택해주세요.');
+							form.boardId.focus();
+
 							return;
 						}
 
@@ -46,6 +53,20 @@
 					onsubmit="ArticleWrite__submit(this); return false;">
 					<input type="hidden" name="redirectUri"
 						value="../article/detail?id=[NEW_ID]" />
+						
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">게시판</span>
+						</label>
+						<div>
+							<select name="boardId" class="select select-bordered w-full max-w-xs">
+							  <option disabled="disabled" selected="selected" value="0">--게시판 선택--</option> 
+							  <c:forEach items="${boards}" var="board">
+							  	<option value="${board.id}">${board.name}</option>
+							  </c:forEach>
+							</select>
+						</div>
+					</div>
 					<div class="form-control">
 						<label class="label">
 							<span class="label-text">제목</span>
