@@ -35,7 +35,51 @@ public class UsrMemberController extends Controller {
 	}
 
 	private void actionDoJoin(Rq rq) {
+		String loginId = rq.getParam("loginId", "");
+		String loginPw = rq.getParam("loginPw", "");
+		String name = rq.getParam("name", "");
+		String nickname = rq.getParam("nickname", "");
+		String email = rq.getParam("email", "");
+		String cellphoneNo = rq.getParam("cellphoneNo", "");
+
+		if (loginId.length() == 0) {
+			rq.historyBack("loginId를 입력해주세요.");
+			return;
+		}
+
+		if (loginPw.length() == 0) {
+			rq.historyBack("loginPw를 입력해주세요.");
+			return;
+		}
 		
+		if (name.length() == 0) {
+			rq.historyBack("name을 입력해주세요.");
+			return;
+		}
+		
+		if (nickname.length() == 0) {
+			rq.historyBack("nickname을 입력해주세요.");
+			return;
+		}
+		
+		if (email.length() == 0) {
+			rq.historyBack("email을 입력해주세요.");
+			return;
+		}
+		
+		if (cellphoneNo.length() == 0) {
+			rq.historyBack("cellphoneNo를 입력해주세요.");
+			return;
+		}
+
+		ResultData joinRd = memberService.join(loginId, loginPw, name, nickname, email, cellphoneNo);
+
+		if (joinRd.isFail()) {
+			rq.historyBack(joinRd.getMsg());
+			return;
+		}
+		
+		rq.replace(joinRd.getMsg(), "../../");
 	}
 
 	private void actionShowJoin(Rq rq) {
@@ -66,6 +110,7 @@ public class UsrMemberController extends Controller {
 
 		if (loginRd.isFail()) {
 			rq.historyBack(loginRd.getMsg());
+			return;
 		}
 		
 		

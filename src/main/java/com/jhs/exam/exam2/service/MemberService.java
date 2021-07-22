@@ -21,5 +21,24 @@ public class MemberService {
 
 		return ResultData.from("S-1", "환영합니다.", "member", member);
 	}
+	
+	public ResultData join(String loginId, String loginPw, String name, String nickname, String email, String cellphoneNo) {
+		Member memberByLoginId = memberRepository.getMemberByLoginId(loginId);
+
+		if (memberByLoginId != null) {
+			return ResultData.from("F-1", "이미 사용중인 아이디 입니다.");
+		}
+
+		Member memberByName = memberRepository.getMemberByName(name);
+		
+		if (memberByName != null && memberByName.getEmail().equals(email)) {
+			
+			return ResultData.from("F-2", "이미 존재하는 사용자입니다.");
+		}
+		
+		memberRepository.join(loginId, loginPw, name, nickname, email, cellphoneNo);
+
+		return ResultData.from("S-1", "가입완료. 로그인해주세요.");
+	}
 
 }
