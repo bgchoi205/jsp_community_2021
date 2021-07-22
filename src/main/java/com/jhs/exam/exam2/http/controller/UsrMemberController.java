@@ -134,7 +134,7 @@ public class UsrMemberController extends Controller {
 	private void actionDoLogin(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
 		String loginPw = rq.getParam("loginPw", "");
-		String redirectUri = rq.getParam("redirectUri", "../article/list");
+		String redirectUri = rq.getParam("redirectUri", "../../");
 
 		if (loginId.length() == 0) {
 			rq.historyBack("loginId를 입력해주세요.");

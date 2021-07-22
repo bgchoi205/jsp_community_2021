@@ -44,8 +44,24 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 <body>
 	<div class="site-wrap flex flex-col min-h-screen">
 	<div class="h-12 flex-shrink-0 mb-4"></div>
+	
 	<header
-		class="top-bar h-12 fixed inset-0 z-50 font-bold bg-white border-b">
+		class="mobile-top-bar h-12 fixed inset-0 z-50 font-bold bg-white border-b md:hidden">
+		<div class="h-full container mx-auto flex">
+			<a href="../../"
+				class="top-bar__logo flex items-center px-4 hover:underline hover:text-red-500">
+				<span>
+					<i class="far fa-lemon"></i>
+				</span>
+				<span>&nbsp;LM</span>
+			</a>
+			<div class="flex-grow"></div>
+			<span class="flex items-center pr-4"><i class="fas fa-bars"></i></span>
+		</div>
+	</header>
+	
+	<header
+		class="top-bar h-12 fixed inset-0 z-50 font-bold bg-white border-b hidden md:block">
 		<div class="h-full container mx-auto flex">
 			<a href="../../"
 				class="top-bar__logo flex items-center px-4 hover:underline hover:text-red-500">

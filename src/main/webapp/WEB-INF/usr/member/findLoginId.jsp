@@ -65,7 +65,7 @@
 
 					<div class="btns">
 						<button type="submit" class="btn btn-link">아이디 찾기</button>
-						<a href="javascript:history.back();" class="btn btn-link">
+						<a href="../member/login" class="btn btn-link">
 							취소
 						</a>
 					</div>
