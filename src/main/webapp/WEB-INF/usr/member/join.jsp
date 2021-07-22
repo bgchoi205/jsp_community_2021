@@ -117,7 +117,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="email" type="text" placeholder="이메일을 입력해주세요." />
+								name="email" type="email" placeholder="이메일을 입력해주세요." />
 						</div>
 					</div>
 					
@@ -127,7 +127,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="cellphoneNo" type="text" placeholder="전화번호를 입력해주세요." />
+								name="cellphoneNo" type="tel" placeholder="전화번호를 입력해주세요." />
 						</div>
 					</div>
 

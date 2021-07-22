@@ -43,6 +43,29 @@ public class UsrMemberController extends Controller {
 	private void actionDoFindLoginId(Rq rq) {
 		String name = rq.getParam("name", "");
 		String email = rq.getParam("email", "");
+		boolean isExist = false;
+		
+		if (name.length() == 0) {
+			rq.historyBack("name을 입력해주세요.");
+			return;
+		}
+		
+		if (email.length() == 0) {
+			rq.historyBack("email을 입력해주세요.");
+			return;
+		}
+		
+		ResultData doFindLoginIdRd = memberService.doFindLoginId(name, email);
+
+		if (doFindLoginIdRd.isFail()) {
+			rq.setAttr("message", "일치하는 회원이 없습니다.");
+			rq.jsp("usr/member/findLoginId");
+		}
+		
+		Member member = (Member) doFindLoginIdRd.getBody().get("member");
+		
+		rq.setAttr("message", "회원님의 아이디는 " + member.getLoginId() + " 입니다.");
+		rq.jsp("usr/member/findLoginId");
 		
 	}
 
@@ -130,13 +153,9 @@ public class UsrMemberController extends Controller {
 			return;
 		}
 		
-		
-
 		Member member = (Member) loginRd.getBody().get("member");
 
 		rq.setSessionAttr("loginedMemberJson", Ut.toJson(member, ""));
-		
-		
 		
 		rq.replace(loginRd.getMsg(), redirectUri);
 		

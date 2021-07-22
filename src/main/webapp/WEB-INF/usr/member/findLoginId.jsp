@@ -24,7 +24,7 @@
 						}
 
 						if (form.name.value.length == 0) {
-							alert('아이디를 입력해주세요.');
+							alert('이름을 입력해주세요.');
 							form.name.focus();
 
 							return;
@@ -70,7 +70,11 @@
 						</a>
 					</div>
 				</form>
-				
+				<c:if test="${message != null}">
+					<div class="text-red-500 flex justify-center">
+						<span>${message}</span>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
