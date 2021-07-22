@@ -29,9 +29,9 @@ public class MemberService {
 			return ResultData.from("F-1", "이미 사용중인 아이디 입니다.");
 		}
 
-		Member memberByName = memberRepository.getMemberByName(name);
+		Member memberByNameAndEmail = memberRepository.getMemberByNameAndEmail(name, email);
 		
-		if (memberByName != null && memberByName.getEmail().equals(email)) {
+		if (memberByNameAndEmail != null) {
 			
 			return ResultData.from("F-2", "이미 존재하는 사용자입니다.");
 		}

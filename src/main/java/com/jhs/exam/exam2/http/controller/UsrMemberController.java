@@ -28,10 +28,27 @@ public class UsrMemberController extends Controller {
 		case "doJoin":
 			actionDoJoin(rq);
 			break;
+		case "findLoginId":
+			actionShowFindLoginId(rq);
+			break;
+		case "doFindLoginId":
+			actionDoFindLoginId(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
 		}
+	}
+
+	private void actionDoFindLoginId(Rq rq) {
+		String name = rq.getParam("name", "");
+		String email = rq.getParam("email", "");
+		
+	}
+
+	private void actionShowFindLoginId(Rq rq) {
+		rq.jsp("usr/member/findLoginId");
+		
 	}
 
 	private void actionDoJoin(Rq rq) {

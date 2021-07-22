@@ -68,6 +68,18 @@
 						<button type="submit" class="btn btn-link">로그인</button>
 					</div>
 				</form>
+				<div>
+					<a href="../member/join" class="ml-2">
+						<span>
+							<button class="btn btn-link btn-xs">회원가입</button>
+						</span>
+					</a>
+					<a href="../member/findLoginId">
+						<span>
+							<button class="btn btn-link btn-xs">아이디 찾기</button>
+						</span>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
