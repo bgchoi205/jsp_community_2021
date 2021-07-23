@@ -46,3 +46,34 @@
 @media ( max-width: 760px ) {
   
 }
+
+
+/* 모바일 사이드바 */
+.mobile-side-bar{
+  background-color:rgba(0,0,0,0.5);
+  visibility:hidden;
+  opacity:0;
+  transition:0.3s;
+}
+
+.mobile-side-bar.active{
+  visibility:visible;
+  opacity:1;
+}
+
+.mobile-side-bar__content{
+  width:320px;
+  transform:translateY(-100%);
+  transition:0.3s;
+}
+
+.mobile-side-bar__content.active{
+  transform:translateY(0);
+}
+
+@media (max-width: 767px) {
+  html.mobile-side-bar-actived,
+  html.mobile-side-bar-actived > body {
+    overflow:hidden;
+  }  
+}
