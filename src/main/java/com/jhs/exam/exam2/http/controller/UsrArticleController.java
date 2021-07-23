@@ -134,6 +134,14 @@ public class UsrArticleController extends Controller {
 			endPage = totalPage;
 		}
 		
+		int mobilePageBlockCount = 4;
+		int mobileCurBlock = (int)Math.ceil((double)page / mobilePageBlockCount);
+		int mobileStartPage = (mobileCurBlock - 1) * mobilePageBlockCount + 1;
+		int mobileEndPage = mobileStartPage + mobilePageBlockCount - 1;
+		if(mobileEndPage > totalPage) {
+			mobileEndPage = totalPage;
+		}
+		
 //		int pageArm = 5;
 //		int startPage = page - pageArm;
 //		int endPage = page + pageArm;
@@ -147,6 +155,9 @@ public class UsrArticleController extends Controller {
 		
 		rq.setAttr("page", page);
 		rq.setAttr("pageBlockCount", pageBlockCount);
+		rq.setAttr("mobilePageBlockCount", mobilePageBlockCount);
+		rq.setAttr("mobileStartPage", mobileStartPage);
+		rq.setAttr("mobileEndPage", mobileEndPage);
 		rq.setAttr("boardId", boardId);
 		rq.setAttr("searchKeyword", searchKeyword);
 		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);

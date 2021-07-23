@@ -136,26 +136,53 @@
 					<hr />
 				</c:forEach>
 			</div>
-			<div class="my-2 mx-auto btn-group">
-				<c:if test="${startPage > pageBlockCount}">
-					<a href="${baseUri}page=1" class="btn btn-sm">＜＜처음</a>
-				</c:if>
-				<c:if test="${startPage > pageBlockCount}">
-					<a href="${baseUri}page=${startPage - 1}" class="btn btn-sm">＜이전</a>
-				</c:if>
-				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<c:set var="aClassStr" value="${i == page ? 'btn-active' : ''}" />
-					<a href="${baseUri}page=${i}" class="${aClassStr} btn btn-sm">
-						<span>${i}</span>&nbsp;
-					</a>
-				</c:forEach>
-				<c:if test="${endPage < totalPage}">
-					<a href="${baseUri}page=${endPage + 1}" class="btn btn-sm">다음＞</a>
-				</c:if>
-				<c:if test="${endPage < totalPage}">
-					<a href="${baseUri}page=${totalPage}" class="btn btn-sm">끝＞＞</a>
-				</c:if>
+			
+			<div class="md:flex hidden">
+				<div class="pagination my-2 mx-auto btn-group">
+					<c:if test="${startPage > pageBlockCount}">
+						<a href="${baseUri}page=1" class="btn btn-sm">＜＜처음</a>
+					</c:if>
+					<c:if test="${startPage > pageBlockCount}">
+						<a href="${baseUri}page=${startPage - 1}" class="btn btn-sm">＜이전</a>
+					</c:if>
+					<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+						<c:set var="aClassStr" value="${i == page ? 'btn-active' : ''}" />
+						<a href="${baseUri}page=${i}" class="${aClassStr} btn btn-sm">
+							<span>${i}</span>&nbsp;
+						</a>
+					</c:forEach>
+					<c:if test="${endPage < totalPage}">
+						<a href="${baseUri}page=${endPage + 1}" class="btn btn-sm">다음＞</a>
+					</c:if>
+					<c:if test="${endPage < totalPage}">
+						<a href="${baseUri}page=${totalPage}" class="btn btn-sm">끝＞＞</a>
+					</c:if>
+				</div>
 			</div>
+			
+			<div class="md:hidden flex">
+				<div class="pagination my-2 mx-auto btn-group text-xs">
+					<c:if test="${mobileStartPage > mobilePageBlockCount}">
+						<a href="${baseUri}page=1" class="btn btn-xs">＜＜</a>
+					</c:if>
+					<c:if test="${mobileStartPage > mobilePageBlockCount}">
+						<a href="${baseUri}page=${mobileStartPage - 1}" class="btn btn-xs">＜</a>
+					</c:if>
+					<c:forEach var="i" begin="${mobileStartPage}" end="${mobileEndPage}" step="1">
+						<c:set var="aClassStr" value="${i == page ? 'btn-active' : ''}" />
+						<a href="${baseUri}page=${i}" class="${aClassStr} btn btn-xs">
+							<span>${i}</span>&nbsp;
+						</a>
+					</c:forEach>
+					<c:if test="${mobileEndPage < totalPage}">
+						<a href="${baseUri}page=${mobileEndPage + 1}" class="btn btn-xs">＞</a>
+					</c:if>
+					<c:if test="${mobileEndPage < totalPage}">
+						<a href="${baseUri}page=${totalPage}" class="btn btn-xs">＞＞</a>
+					</c:if>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </section>
