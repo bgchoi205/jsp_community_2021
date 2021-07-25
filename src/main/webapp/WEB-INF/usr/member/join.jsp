@@ -8,7 +8,7 @@
 <section
 	class="section section-member-join flex-grow">
 	<div class="px-2">
-		<div class="card bordered shadow-lg">
+		<div class="card bordered shadow-lg  max-w-lg mx-auto">
 			<div class="card-title">
 				<a href="javascript:history.back();" class="cursor-pointer"> <i
 					class="fas fa-chevron-left"></i>
@@ -71,6 +71,23 @@
 				</script>
 				<form action="../member/doJoin" method="POST"
 					onsubmit="MemberJoin__submit(this); return false;">
+					
+					<div class="form-control my-1">
+					    <label class="cursor-pointer flex items-center">
+					    	<input type="checkbox" name="agreementTermsOfService" class="checkbox checkbox-primary">
+					    	&nbsp;
+					    	<span class="label-text">이용약관 동의</span> 
+					    </label>
+					</div>
+
+					<div class="form-control my-1">
+					    <label class="cursor-pointer flex items-center">
+					    	<input type="checkbox" name="agreementPrivacyPolicy" class="checkbox checkbox-primary">
+					    	&nbsp;
+					    	<span class="label-text">개인정보 취급방침 동의</span> 
+					    </label>
+					</div>
+					
 					<div class="form-control">
 						<label class="label">
 							<span class="label-text">사용할 아이디 입력</span>

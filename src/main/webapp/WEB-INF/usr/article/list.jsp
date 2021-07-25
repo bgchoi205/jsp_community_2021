@@ -20,17 +20,6 @@
 					<span><i class="fas fa-pen"></i></span>
 					<span class="pl-1">글쓰기</span>
 				</a>
-			</div>
-			<hr />
-			<div class="p-2 flex items-center">
-				<div>
-					<c:if test="${param.searchKeyword == null }">
-						게시물 수 : ${totalArticlesCount}
-					</c:if>
-					<c:if test="${param.searchKeyword != null }">
-						`${searchKeyword}` 검색결과 게시물 수 : ${totalArticlesCount}
-					</c:if>
-				</div>
 				<div class="flex-grow"></div>
 				<div>
 					<form action="../article/list" class="flex">
@@ -67,6 +56,19 @@
 						</div>
 					</form>
 				</div>
+			</div>
+			<hr />
+			<div class="p-2 flex items-center">
+				<div>
+					<c:if test="${param.searchKeyword == null }">
+						게시물 수 : ${totalArticlesCount}
+					</c:if>
+					<c:if test="${param.searchKeyword != null }">
+						`${searchKeyword}` 검색결과 게시물 수 : ${totalArticlesCount}
+					</c:if>
+				</div>
+				<div class="flex-grow"></div>
+				
 			</div>
 			<hr />
 			<div class="px-4">

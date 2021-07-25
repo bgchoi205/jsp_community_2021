@@ -19,12 +19,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- 데이지 UI 불러오기 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1/dist/tailwind.min.css"
-	rel="stylesheet" type="text/css" />
-<link href="https://cdn.jsdelivr.net/npm/daisyui@1.4.0/dist/full.css"
-	rel="stylesheet" type="text/css" />
+<!-- 테일윈드, 데이지 UI 불러오기 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/daisyui@1.10.0/dist/full.css" rel="stylesheet" type="text/css" />
+
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resource/font.css" />
