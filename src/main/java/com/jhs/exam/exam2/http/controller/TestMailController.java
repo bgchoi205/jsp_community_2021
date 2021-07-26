@@ -51,7 +51,7 @@ public class TestMailController extends Controller {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.port", "587");
         
-        Authenticator auth = new MailAuth();
+        Authenticator auth = new MailAuth("choibk4938@gmail.com", "ptkmpvttlebnrdgr");
         
         Session session = Session.getDefaultInstance(prop, auth);
         
