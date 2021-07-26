@@ -13,7 +13,7 @@ import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.http.controller.Controller;
 import com.jhs.mysqliutil.MysqlUtil;
 
-@WebServlet("/usr/*")
+@WebServlet(urlPatterns = {"/usr/*", "/test/*"})
 public class DispatcherServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		Rq rq = new Rq(req, resp);
@@ -39,6 +39,12 @@ public class DispatcherServlet extends HttpServlet {
 				break;
 			case "home":
 				controller = Container.usrHomeController;
+				break;
+			}
+		case "test":
+			switch (rq.getControllerName()) {
+			case "mail":
+				controller = Container.testMailController;
 				break;
 			}
 

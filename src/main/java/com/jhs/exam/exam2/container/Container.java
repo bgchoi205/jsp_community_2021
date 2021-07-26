@@ -1,5 +1,6 @@
 package com.jhs.exam.exam2.container;
 
+import com.jhs.exam.exam2.http.controller.TestMailController;
 import com.jhs.exam.exam2.http.controller.UsrArticleController;
 import com.jhs.exam.exam2.http.controller.UsrHomeController;
 import com.jhs.exam.exam2.http.controller.UsrMemberController;
@@ -21,6 +22,7 @@ public class Container {
 	public static ArticleRepository articleRepository;
 	public static ArticleService articleService;
 	public static UsrArticleController usrArticleController;
+	public static TestMailController testMailController;
 
 	public static MemberRepository memberRepository;
 	public static MemberService memberService;
@@ -47,5 +49,6 @@ public class Container {
 		usrArticleController = new UsrArticleController();
 		usrMemberController = new UsrMemberController();
 		usrHomeController = new UsrHomeController();
+		testMailController = new TestMailController();
 	}
 }
