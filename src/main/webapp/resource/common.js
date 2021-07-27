@@ -1,3 +1,4 @@
+/* 모바일 사이드 바 */
 function mobileSideBar__show(){
   $('.mobile-side-bar').addClass('active');
   $('.mobile-side-bar__content').addClass('active');
@@ -21,3 +22,30 @@ function mobileSideBar__init(){
 }
 
 mobileSideBar__init();
+
+
+/* 검색바 */
+function searchBar__show(){
+  $('.search-bar').addClass('active');
+}
+
+function searchBar__hide(){
+  $('.search-bar').removeClass('active');
+}
+
+function searchBar__init(){
+  $('.top-bar__search-btn').click(function(){
+    searchBar__show();
+  });
+  
+  $('.search-bar__close-btn, .search-bar').click(function(){
+    searchBar__hide();
+  });
+  
+  $('.search-bar > form').click(function(){
+    return false;
+  });
+  
+}
+
+searchBar__init();

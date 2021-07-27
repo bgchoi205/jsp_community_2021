@@ -63,11 +63,11 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 					<i class="fas fa-pen"></i>
 				</span>
 			</a>
-			<a class="top-bar__search flex items-center px-4 hover:underline hover:text-red-500">
-				<span>
-					<i class="fas fa-search"></i>
-				</span>
-			</a>
+			
+			<span class="top-bar__search-btn flex items-center px-4 hover:underline hover:text-red-500 cursor-pointer">
+				<i class="fas fa-search"></i>
+			</span>
+			
 			<span class="mobile-side-bar__btn flex items-center px-4 cursor-pointer">
 				<i class="fas fa-bars"></i>
 			</span>
@@ -174,21 +174,21 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 						<a href="../../"
 							class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 								<span> <i class="fas fa-home"></i>
-							</span> <span class="hidden sm:block">&nbsp;HOME</span>
+							</span> <span class="hidden lg:block">&nbsp;HOME</span>
 						</a>
 					</li>
 					<li>
 						<a href="../article/list?boardId=1"
 							class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 								<span> <i class="fas fa-flag"></i>
-							</span> <span class="hidden sm:block">&nbsp;NOTICE LIST</span>
+							</span> <span class="hidden lg:block">&nbsp;NOTICE LIST</span>
 						</a>
 					</li>
 					<li>
 						<a href="../article/list?boardId=2"
 							class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 								<span> <i class="fas fa-paper-plane"></i>
-							</span> <span class="hidden sm:block">&nbsp;FREE LIST</span>
+							</span> <span class="hidden lg:block">&nbsp;FREE LIST</span>
 						</a>
 					</li>
 					<c:if test="${rq.notLogined}">
@@ -197,14 +197,14 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 								href="../member/login?afterLoginUri=${rq.encodedAfterLoginUri}"
 								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 									<span> <i class="fas fa-sign-in-alt"></i>
-								</span> <span class="hidden sm:block">&nbsp;LOGIN</span>
+								</span> <span class="hidden lg:block">&nbsp;LOGIN</span>
 							</a>
 						</li>
 						<li>
 							<a href="../member/join"
 								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 									<span> <i class="fas fa-user-plus"></i>
-								</span> <span class="hidden sm:block">&nbsp;JOIN</span>
+								</span> <span class="hidden lg:block">&nbsp;JOIN</span>
 							</a>
 						</li>
 					</c:if>
@@ -215,19 +215,87 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 								href="../member/doLogout"
 								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 									<span> <i class="fas fa-sign-out-alt"></i>
-								</span> <span class="hidden sm:block">&nbsp;LOGOUT</span>
+								</span> <span class="hidden lg:block">&nbsp;LOGOUT</span>
 							</a>
 						</li>
 						<li>
 							<a href="#"
 								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 									<span> <i class="fas fa-user"></i>
-								</span> <span class="hidden sm:block">&nbsp;MY PAGE</span>
+								</span> <span class="hidden lg:block">&nbsp;MY PAGE</span>
 							</a>
 						</li>
 					</c:if>
+					<li class="flex items-center px-4 hover:underline hover:text-red-500 cursor-pointer">
+						<div class="top-bar__search-btn flex">
+							<span>
+								<i class="fas fa-search"></i>
+							</span>
+							<span class="hidden lg:block">
+								&nbsp;SEARCH
+							</span>
+						</div>
+					</li>
 				</ul>
 			</nav>
 		</div>
 	</header>
+	
+	<div class="search-bar fixed inset-0 z-40 flex justify-center items-center">
+	  <form action="../article/list">
+	 
+	    <nav class="seach-form-head mb-4 w-full flex">
+	      <span class="search-bar__close-btn ml-auto mr-2 cursor-pointer">
+	        <i class="fas fa-times"></i>
+	      </span>
+	    </nav>
+	    
+	    <div>
+	      <select name="boardId" class="select select-bordered select-sm w-full">
+	        <option disabled="disabled" selected="selected">-게시판 선택-</option>
+	        <option value="1">공지</option>
+	        <option value="2">자유</option>
+	      </select>
+	    </div>
+	    <script>
+	      	if(rqParams.boardId){
+	      		$('select[name="boardId"]').val(rqParams.boardId);
+	      	}
+	    </script>
+	
+	    <div>
+	      <select name="searchKeywordTypeCode" class="select select-bordered select-sm w-full">
+	        <option value="title,body">제목,내용</option>
+	        <option value="title">제목</option>
+	        <option value="body">내용</option>
+	      </select>
+	      <script>
+	      	if(rqParams.searchKeywordTypeCode){
+	      		$('select[name="searchKeywordTypeCode"]').val(rqParams.searchKeywordTypeCode);
+	      	}else{
+	      		$('select[name="searchKeywordTypeCode"]').val('title,body');
+	      	}
+	      </script>
+	      <!-- <script type="text/javascript">
+	        const $searchSelect = $('select[name="searchKeywordTypeCode"]');
+	        if ('${param.searchKeywordTypeCode}'.trim().length > 0) {
+	          $searchSelect.val('${param.searchKeywordTypeCode}');
+	        } else {
+	          $searchSelect.val('title,body');
+	        }
+	      </script> -->
+	    </div>
+	    
+	    
+	    <div class="form-control">
+	      <input name="searchKeyword" type="text" placeholder="검색어" class="input input-bordered" maxlength="100" value="${searchKeyword}">
+	    </div>
+	    
+	    
+	    <div>
+	      <button type="submit" value="Submit" class="btn">검색</button>
+	    </div>
+	  </form>
+	</div>
+	
 	<main class="flex-grow flex flex-col">

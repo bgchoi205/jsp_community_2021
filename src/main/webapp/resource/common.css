@@ -79,3 +79,30 @@
     overflow:hidden;
   }  
 }
+
+/* 검색바 */
+.search-bar{
+  background-color:rgba(0,0,0,0.5);
+  visibility:hidden;
+  opacity:0;
+  transition:0.3s;
+}
+
+.search-bar.active{
+  visibility:visible;
+  opacity:1;
+}
+
+
+
+.search-bar > form{
+  background-color:white;
+  padding:20px;
+  min-width:320px;
+  border-radius:10px;
+}
+
+.search-bar > form > div{
+  margin-top:10px;
+  margin-bottom:10px;
+}

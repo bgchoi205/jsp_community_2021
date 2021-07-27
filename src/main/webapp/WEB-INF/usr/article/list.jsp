@@ -21,17 +21,17 @@
 					<span class="pl-1">글쓰기</span>
 				</a>
 				<div class="flex-grow"></div>
-				<div>
+				<%-- <div>
 					<form action="../article/list" class="flex">
 						<c:if test="${boardId != 0}">
 							<input name="boardId" type="hidden" value="${boardId}">
 						</c:if>
 						<div class="px-2">
-						    <%-- <select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
+						    <select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
 								<option value="title,body" <c:if test="${param.searchKeywordTypeCode eq 'title,body'}">selected='selected'</c:if>>제목,내용</option> 
 								<option value="title" <c:if test="${param.searchKeywordTypeCode eq 'title'}">selected='selected'</c:if>>제목</option> 
 								<option value="body" <c:if test="${param.searchKeywordTypeCode eq 'body'}">selected='selected'</c:if>>내용</option>
-							</select> --%>
+							</select>
 							<select name="searchKeywordTypeCode" class="select select-bordered w-full max-w-xs">
 								<option value="title,body">제목,내용</option> 
 								<option value="title">제목</option> 
@@ -55,7 +55,7 @@
 						    <button type="submit" value="Submit" class="btn">검색</button>
 						</div>
 					</form>
-				</div>
+				</div> --%>
 			</div>
 			<hr />
 			<div class="p-2 flex items-center">
