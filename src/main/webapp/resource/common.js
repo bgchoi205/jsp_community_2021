@@ -27,6 +27,9 @@ mobileSideBar__init();
 /* 검색바 */
 function searchBar__show(){
   $('.search-bar').addClass('active');
+  setTimeout(function(){
+	$('.search-bar form div input[name="searchKeyword"]').focus();
+	}, 100);
 }
 
 function searchBar__hide(){
@@ -42,8 +45,8 @@ function searchBar__init(){
     searchBar__hide();
   });
   
-  $('.search-bar > form').click(function(){
-    return false;
+  $('.search-bar > form').click(function(e){
+    e.stopPropagation();
   });
   
 }
