@@ -34,16 +34,31 @@ public class UsrMemberController extends Controller {
 		case "doFindLoginId":
 			actionDoFindLoginId(rq);
 			break;
+		case "findLoginPw":
+			actionShowFindLoginPw(rq);
+			break;
+		case "doFindLoginPw":
+			actionDoFindLoginPw(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
 		}
 	}
 
+	private void actionDoFindLoginPw(Rq rq) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void actionShowFindLoginPw(Rq rq) {
+		rq.jsp("usr/member/findLoginPw");
+		
+	}
+
 	private void actionDoFindLoginId(Rq rq) {
 		String name = rq.getParam("name", "");
 		String email = rq.getParam("email", "");
-		boolean isExist = false;
 		
 		if (name.length() == 0) {
 			rq.historyBack("name을 입력해주세요.");

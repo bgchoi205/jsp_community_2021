@@ -79,6 +79,11 @@
 							<button class="btn btn-link btn-xs">아이디 찾기</button>
 						</span>
 					</a>
+					<a href="../member/findLoginPw">
+						<span>
+							<button class="btn btn-link btn-xs">비밀번호 찾기</button>
+						</span>
+					</a>
 				</div>
 			</div>
 		</div>
