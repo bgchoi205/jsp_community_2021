@@ -64,4 +64,25 @@ public class MemberRepository {
 		MysqlUtil.update(sql);
 	}
 
+	public String getTemporaryPw(String loginId) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT temporaryPw");
+		sql.append("FROM member AS M");
+		sql.append("WHERE M.loginId = ?", loginId);
+		sql.append("LIMIT 1");
+		
+		return MysqlUtil.selectRowStringValue(sql);
+	}
+
+	public void changeLoginPwToTemporaryPw(String loginId, String temporaryPw) {
+		SecSql sql = new SecSql();
+		sql.append("UPDATE `member`");
+		sql.append("SET loginPw = ?", temporaryPw);
+		sql.append(", temporaryPw = null");
+		sql.append("WHERE loginId = ?", loginId);
+		sql.append("LIMIT 1");
+		
+		MysqlUtil.update(sql);
+	}
+
 }

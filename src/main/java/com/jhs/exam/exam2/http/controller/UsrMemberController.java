@@ -102,7 +102,7 @@ public class UsrMemberController extends Controller {
             InternetAddress to = new InternetAddress(email); // 받는사람       
             msg.setRecipient(Message.RecipientType.TO, to);            
             msg.setSubject("임시비밀번호 발송", "UTF-8"); // 제목
-            msg.setText("임시비밀번호는 " + temporaryPw + " 입니다.", "UTF-8"); // 내용
+            msg.setText(loginId + "님 임시비밀번호는 " + temporaryPw + " 입니다.", "UTF-8"); // 내용
             
             Transport.send(msg);
             

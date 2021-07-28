@@ -14,8 +14,19 @@ public class MemberService {
 		if (member == null) {
 			return ResultData.from("F-1", "존재하지 않는 회원의 로그인아이디 입니다.");
 		}
+		
+		String temporaryPw = memberRepository.getTemporaryPw(loginId);
+		
+		System.out.println("임시 비밀번호 : " + temporaryPw);
 
 		if (member.getLoginPw().equals(loginPw) == false) {
+			
+			if(temporaryPw != null && temporaryPw.equals(loginPw)) {
+				
+				memberRepository.changeLoginPwToTemporaryPw(loginId, temporaryPw);
+				
+				return ResultData.from("S-1", "환영합니다.", "member", member);
+			}
 			return ResultData.from("F-2", "비밀번호가 일치하지 않습니다.");
 		}
 
