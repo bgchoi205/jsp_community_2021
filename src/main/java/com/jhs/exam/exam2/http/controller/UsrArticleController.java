@@ -102,6 +102,8 @@ public class UsrArticleController extends Controller {
 		String searchUri = "searchKeywordTypeCode=" + searchKeywordTypeCode + "&searchKeyword=" + searchKeyword + "&";
 		String boardUri = "boardId=" + boardId + "&";
 		
+		String boardName = null;
+		
 		if(boardId != 0) {
 			Board board = boardService.getBoardById(boardId);
 			
@@ -109,7 +111,12 @@ public class UsrArticleController extends Controller {
 				rq.historyBack(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
 				return;
 			}
+			
+			boardName= board.getName();
+			
 		}
+		
+		
 
 		if(boardId != 0) {
 			baseUri = baseUri + boardUri;
@@ -159,6 +166,7 @@ public class UsrArticleController extends Controller {
 		rq.setAttr("mobileStartPage", mobileStartPage);
 		rq.setAttr("mobileEndPage", mobileEndPage);
 		rq.setAttr("boardId", boardId);
+		rq.setAttr("boardName", boardName);
 		rq.setAttr("searchKeyword", searchKeyword);
 		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);
 		rq.setAttr("baseUri", baseUri);

@@ -13,7 +13,11 @@
 				<a href="javascript:history.back();" class="cursor-pointer">
 					<i class="fas fa-chevron-left"></i>
 				</a>
-				<span>게시물 리스트</span>
+				<span>
+					<c:if test="${boardName.length() > 0 && boardName != null}">${boardName}</c:if>
+					게시물 리스트
+				</span>
+				
 			</div>
 			<div class="p-2 flex items-center">
 				<a href="../article/write" role="button" class="btn btn-sm btn-primary">
