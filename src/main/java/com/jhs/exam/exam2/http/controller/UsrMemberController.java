@@ -60,6 +60,7 @@ public class UsrMemberController extends Controller {
 		if (doFindLoginIdRd.isFail()) {
 			rq.setAttr("message", "일치하는 회원이 없습니다.");
 			rq.jsp("usr/member/findLoginId");
+			return;
 		}
 		
 		Member member = (Member) doFindLoginIdRd.getBody().get("member");

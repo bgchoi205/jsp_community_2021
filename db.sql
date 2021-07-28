@@ -133,3 +133,6 @@ END WHILE; #while문 끝
 END $$ 
 
 CALL dataInsert(); #함수 호출 
+
+ALTER TABLE `member` CHANGE nickName nickname CHAR(30) UNIQUE NOT NULL;
+ALTER TABLE `member` CHANGE cellPhone cellphoneNo CHAR(20) NOT NULL;
