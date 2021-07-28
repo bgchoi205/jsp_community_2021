@@ -52,10 +52,25 @@ public class MemberService {
 		return ResultData.from("S-1", "가입완료. 로그인해주세요.", "member", member);
 	}
 	
+
+	public ResultData doFindLoginPw(String loginId, String email) {
+		Member member = memberRepository.getMemberByLoginIdAndEmail(loginId, email);
+		
+		if (member == null) {
+			
+			return ResultData.from("F-1", "존재하지 않는 회원입니다.");
+		}
+
+		return ResultData.from("S-1", "임시 비밀번호를 발송해드리겠습니다.", "member", member);
+	}
+
 	
 	public Member getMemberByNameAndEmail(String name, String email) {
 		return memberRepository.getMemberByNameAndEmail(name, email);
 	}
 
+	public void setTemporaryPw(String temporaryPw, String loginId) {
+		memberRepository.setTemporaryPw(temporaryPw, loginId);
+	}
 
 }

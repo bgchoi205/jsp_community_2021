@@ -1,11 +1,8 @@
 package com.jhs.exam.exam2.http.controller;
 
-import com.jhs.exam.exam2.container.Container;
-import com.jhs.exam.exam2.dto.Member;
-import com.jhs.exam.exam2.dto.ResultData;
+import java.util.Random;
+
 import com.jhs.exam.exam2.http.Rq;
-import com.jhs.exam.exam2.service.MemberService;
-import com.jhs.exam.exam2.util.Ut;
 
 public class UsrHomeController extends Controller {
 
@@ -24,7 +21,6 @@ public class UsrHomeController extends Controller {
 	
 
 	private void actionShowMain(Rq rq) {
-		
 		rq.jsp("usr/home/main");
 	}
 }

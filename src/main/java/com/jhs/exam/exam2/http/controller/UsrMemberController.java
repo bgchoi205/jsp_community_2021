@@ -1,6 +1,21 @@
 package com.jhs.exam.exam2.http.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import com.jhs.exam.exam2.container.Container;
+import com.jhs.exam.exam2.dto.MailAuth;
 import com.jhs.exam.exam2.dto.Member;
 import com.jhs.exam.exam2.dto.ResultData;
 import com.jhs.exam.exam2.http.Rq;
@@ -47,7 +62,59 @@ public class UsrMemberController extends Controller {
 	}
 
 	private void actionDoFindLoginPw(Rq rq) {
-		// TODO Auto-generated method stub
+		String loginId = rq.getParam("loginId", "");
+		String email = rq.getParam("email", "");
+		
+		ResultData doFindLoginPwRd = memberService.doFindLoginPw(loginId, email);
+		
+		if (doFindLoginPwRd.isFail()) {
+			rq.setAttr("message", "일치하는 회원이 없습니다.");
+			rq.jsp("usr/member/findLoginPw");
+			return;
+		}
+		
+		Properties prop = System.getProperties();
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.port", "587");
+        
+        Authenticator auth = new MailAuth("choibk4938@gmail.com", "ptkmpvttlebnrdgr");
+        
+        Session session = Session.getDefaultInstance(prop, auth);
+        
+        MimeMessage msg = new MimeMessage(session);
+        
+        Random rnd = new Random();
+		String temporaryPw = "";
+		
+		for(int i = 0; i < 6; i++) {
+			temporaryPw += String.valueOf((char) ((int) (rnd.nextInt(26)) + 97));
+		}
+		
+		memberService.setTemporaryPw(temporaryPw, loginId);
+		
+    
+        try {
+            msg.setSentDate(new Date());
+            
+            msg.setFrom(new InternetAddress("choibk4938@gmail.com", "VISITOR"));
+            InternetAddress to = new InternetAddress(email); // 받는사람       
+            msg.setRecipient(Message.RecipientType.TO, to);            
+            msg.setSubject("임시비밀번호 발송", "UTF-8"); // 제목
+            msg.setText("임시비밀번호는 " + temporaryPw + " 입니다.", "UTF-8"); // 내용
+            
+            Transport.send(msg);
+            
+        } catch(AddressException ae) {            
+            System.out.println("AddressException : " + ae.getMessage());           
+        } catch(MessagingException me) {            
+            System.out.println("MessagingException : " + me.getMessage());
+        } catch(UnsupportedEncodingException e) {
+            System.out.println("UnsupportedEncodingException : " + e.getMessage());			
+        }
+        
+        rq.replace("임시비밀번호 발송완료. 이메일 확인 후 다시 로그인해주세요.", "../member/login");
 		
 	}
 
