@@ -134,5 +134,9 @@ END $$
 
 CALL dataInsert(); #함수 호출 
 
+# nickname, cellphoneNo 으로 컬럼 네임 변경
 ALTER TABLE `member` CHANGE nickName nickname CHAR(30) UNIQUE NOT NULL;
 ALTER TABLE `member` CHANGE cellPhone cellphoneNo CHAR(20) NOT NULL;
+
+# member 테이블에 임시비밀번호 컬럼 생성
+ALTER TABLE `member` ADD COLUMN temporaryPw CHAR(100) DEFAULT NULL;
