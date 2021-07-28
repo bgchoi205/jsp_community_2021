@@ -92,10 +92,13 @@
 						<label class="label">
 							<span class="label-text">사용할 아이디 입력</span>
 						</label>
-						<div>
-							<input class="input input-bordered w-full" maxlength="100"
+						<div class="flex items-center">
+							<input class="input input-bordered max-w-md" maxlength="100"
 								name="loginId" type="text" placeholder="아이디를 입력해주세요." />
+							<button class="idCheckBtn btn btn-link text-sm">중복확인</button>
+							<div class="idCheckText text-red-500 font-bold pl-2">gg</div>
 						</div>
+						
 					</div>
 
 					<div class="form-control">
