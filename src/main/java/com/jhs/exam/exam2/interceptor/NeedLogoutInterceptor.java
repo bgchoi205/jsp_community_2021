@@ -16,14 +16,14 @@ public class NeedLogoutInterceptor extends Interceptor {
 		case "/usr/member/doFindLoginId":
 		case "/usr/member/findLoginPw":
 		case "/usr/member/doFindLoginPw":
-			return true;
+			if ( rq.isLogined() ) {
+				rq.replace("로그아웃 후 이용해주세요.", "../../");
+				
+				return false;
+			}
 		}
 		
-		if ( rq.isLogined() ) {
-			rq.replace("로그아웃 후 이용해주세요.", "../../");
-			
-			return false;
-		}
+		
 		
 		return true;
 	}
