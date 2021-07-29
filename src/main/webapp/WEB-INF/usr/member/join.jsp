@@ -95,7 +95,7 @@
 						<div class="flex items-center">
 							<input class="input input-bordered max-w-md" maxlength="100"
 								name="loginId" type="text" placeholder="아이디를 입력해주세요." />
-							<button class="idCheckBtn btn btn-link text-sm">중복확인</button>
+							<div class="idCheckBtn btn btn-link text-sm">중복확인</div>
 							<div class="idCheckText text-red-500 font-bold pl-2">gg</div>
 						</div>
 						

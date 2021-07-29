@@ -13,8 +13,7 @@ import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.http.controller.Controller;
 import com.jhs.mysqliutil.MysqlUtil;
 
-@WebServlet(urlPatterns = {"/usr/*", "/test/*"})
-public class DispatcherServlet extends HttpServlet {
+abstract public class DispatcherServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		Rq rq = new Rq(req, resp);
 
@@ -26,31 +25,8 @@ public class DispatcherServlet extends HttpServlet {
 			return;
 		}
 
-		Controller controller = null;
-
-		switch (rq.getControllerTypeName()) {
-		case "usr":
-			switch (rq.getControllerName()) {
-			case "article":
-				controller = Container.usrArticleController;
-				break;
-			case "member":
-				controller = Container.usrMemberController;
-				break;
-			case "home":
-				controller = Container.usrHomeController;
-				break;
-			}
-		case "test":
-			switch (rq.getControllerName()) {
-			case "mail":
-				controller = Container.testMailController;
-				break;
-			}
-
-			break;
-		}
-
+		Controller controller = getControllerByRq(rq);
+		
 		if (controller != null) {
 			controller.performAction(rq);
 
@@ -58,6 +34,40 @@ public class DispatcherServlet extends HttpServlet {
 		}else {
 			rq.print("올바른 요청이 아닙니다.");
 		}
+	}
+	
+	
+	private Controller getControllerByRq(Rq rq) {
+		switch (rq.getControllerTypeName()) {
+		case "usr":
+			switch (rq.getControllerName()) {
+			case "article":
+				return Container.usrArticleController;
+			case "member":
+				return Container.usrMemberController;
+			case "home":
+				return Container.usrHomeController;
+
+			}
+			break;
+		case "adm":
+			switch (rq.getControllerName()) {
+			case "home":
+				return Container.admHomeController;
+
+			}
+			break;
+		case "test":
+			switch (rq.getControllerName()) {
+			case "mail":
+				return Container.testMailController;
+			}
+
+			break;
+		}
+
+		return null;
+
 	}
 
 	private boolean runInterceptors(Rq rq) {

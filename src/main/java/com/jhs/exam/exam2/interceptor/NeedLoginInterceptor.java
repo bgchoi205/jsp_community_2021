@@ -6,6 +6,11 @@ public class NeedLoginInterceptor extends Interceptor {
 
 	@Override
 	public boolean runBeforeAction(Rq rq) {
+		
+		if(rq.getControllerTypeName().equals("usr") == false) {
+			return true;
+		}
+		
 		switch (rq.getActionPath()) {
 		case "/usr/article/list":
 		case "/usr/article/detail":
@@ -19,8 +24,6 @@ public class NeedLoginInterceptor extends Interceptor {
 		case "/usr/member/doFindLoginId":
 		case "/usr/member/findLoginPw":
 		case "/usr/member/doFindLoginPw":
-		case "/test/mail/send":
-		case "/test/mail/doSend":
 			return true;
 		}
 		

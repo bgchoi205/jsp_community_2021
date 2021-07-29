@@ -55,10 +55,18 @@ public class UsrMemberController extends Controller {
 		case "doFindLoginPw":
 			actionDoFindLoginPw(rq);
 			break;
+		case "loginIdCheck":
+			actionDoLoginIdCheck(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
 		}
+	}
+
+	private void actionDoLoginIdCheck(Rq rq) {
+		
+		
 	}
 
 	private void actionDoFindLoginPw(Rq rq) {
