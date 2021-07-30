@@ -84,4 +84,8 @@ public class MemberService {
 		memberRepository.setTemporaryPw(temporaryPw, loginId);
 	}
 
+	public boolean isAdmin(Member loginedMember) {
+		return loginedMember.getAuthLevel()  >= 7;
+	}
+
 }

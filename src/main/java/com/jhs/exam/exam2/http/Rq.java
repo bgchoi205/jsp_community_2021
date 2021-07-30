@@ -37,6 +37,10 @@ public class Rq {
 	
 	@Getter
 	@Setter
+	private boolean isAdmin = false;
+	
+	@Getter
+	@Setter
 	private int loginedMemberId = 0;
 	
 	@Getter
@@ -279,5 +283,12 @@ public class Rq {
 		return Ut.getUriEncoded(getAfterLoginUri());
 	}
 
+	public boolean isNotAdmin() {
+		if(isNotLogined()) {
+			return false;
+		}
+		
+		return isAdmin == false;
+	}
 	
 }
