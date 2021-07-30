@@ -96,6 +96,15 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 	    <div class="mobile-side-bar__body flex-grow flex flex-col items-center overflow-y-auto mt-4">
 	      <nav class="mobile-side-bar__menu-box-1 text-xl">
 				<ul>
+					<c:if test="${rq.admin}">
+						<li class="p-4">
+							<a href="../../adm/home/main"
+								class="p-2 hover:underline hover:text-red-500">
+									<span> <i class="fas fa-user-cog"></i>
+								</span> <span>&nbsp;ADMIN</span>
+							</a>
+						</li>
+					</c:if>
 					<li class="p-4">
 						<a href="../../"
 							class="p-2 hover:underline hover:text-red-500">
@@ -136,19 +145,19 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 					</c:if>
 					<c:if test="${rq.logined}">
 						<li class="p-4">
+							<a href="#"
+								class="p-2 hover:underline hover:text-red-500">
+								<span><i class="fas fa-user"></i></span>
+								<span>&nbsp;${rq.loginedMember.nickname}</span>
+							</a>
+						</li>
+						<li class="p-4">
 							<a
 								onclick="if ( !confirm('로그아웃 하시겠습니까?') ) return false;"
 								href="../member/doLogout"
 								class="p-2 hover:underline hover:text-red-500">
 								<span><i class="fas fa-sign-out-alt"></i></span>
 								<span>&nbsp;LOGOUT</span>
-							</a>
-						</li>
-						<li class="p-4">
-							<a href="#"
-								class="p-2 hover:underline hover:text-red-500">
-								<span><i class="fas fa-user"></i></span>
-								<span>&nbsp;MYPAGE</span>
 							</a>
 						</li>
 					</c:if>
@@ -171,6 +180,15 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 
 			<nav class="top-bar__menu-box-1">
 				<ul class="flex h-full">
+					<c:if test="${rq.admin}">
+						<li>
+							<a href="../../adm/home/main"
+								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
+									<span> <i class="fas fa-user-cog"></i>
+								</span> <span class="hidden lg:block">&nbsp;ADMIN</span>
+							</a>
+						</li>
+					</c:if>
 					<li>
 						<a href="../../"
 							class="h-full flex items-center px-4 hover:underline hover:text-red-500">
@@ -211,19 +229,19 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 					</c:if>
 					<c:if test="${rq.logined}">
 						<li>
+							<a href="#"
+								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
+									<span> <i class="fas fa-user"></i>
+								</span> <span class="truncate">&nbsp;${rq.loginedMember.nickname}</span>
+							</a>
+						</li>
+						<li>
 							<a
 								onclick="if ( !confirm('로그아웃 하시겠습니까?') ) return false;"
 								href="../member/doLogout"
 								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
 									<span> <i class="fas fa-sign-out-alt"></i>
 								</span> <span class="hidden lg:block">&nbsp;LOGOUT</span>
-							</a>
-						</li>
-						<li>
-							<a href="#"
-								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
-									<span> <i class="fas fa-user"></i>
-								</span> <span class="hidden lg:block">&nbsp;MY PAGE</span>
 							</a>
 						</li>
 					</c:if>

@@ -49,7 +49,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="loginId" type="text" placeholder="아이디를 입력해주세요."/>
+								name="loginId" type="text" placeholder="아이디를 입력해주세요." autofocus/>
 						</div>
 					</div>
 
