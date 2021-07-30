@@ -17,7 +17,9 @@ import com.jhs.exam.exam2.dto.MailAuth;
 import com.jhs.exam.exam2.http.Rq;
 
 public class TestMailController extends Controller {
-	
+	public void init() {
+		
+	}
 
 	@Override
 	public void performAction(Rq rq) {

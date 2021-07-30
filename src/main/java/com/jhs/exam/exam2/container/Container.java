@@ -57,5 +57,25 @@ public class Container {
 		admHomeController = new AdmHomeController();
 		testMailController = new TestMailController();
 		
+		// 객체 초기화
+		articleRepository.init();
+		memberRepository.init();
+		boardRepository.init();
+		
+		articleService.init();
+		memberService.init();
+		boardService.init();
+		
+		beforeActionInterceptor.init();
+		needLoginInterceptor.init();
+		needLogoutInterceptor.init();
+		needAdminInterceptor.init();
+		
+		usrArticleController.init();
+		usrMemberController.init();
+		usrHomeController.init();
+		admHomeController.init();
+		testMailController.init();
+		
 	}
 }

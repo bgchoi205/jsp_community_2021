@@ -2,9 +2,14 @@ package com.jhs.exam.exam2.http.controller;
 
 import java.util.Random;
 
+import com.jhs.exam.exam2.container.Container;
 import com.jhs.exam.exam2.http.Rq;
 
 public class UsrHomeController extends Controller {
+	
+	public void init() {
+		
+	}
 
 	@Override
 	public void performAction(Rq rq) {

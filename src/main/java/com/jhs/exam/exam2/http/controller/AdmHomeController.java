@@ -5,6 +5,9 @@ import java.util.Random;
 import com.jhs.exam.exam2.http.Rq;
 
 public class AdmHomeController extends Controller {
+	public void init() {
+		
+	}
 
 	@Override
 	public void performAction(Rq rq) {

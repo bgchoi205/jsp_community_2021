@@ -11,7 +11,11 @@ import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.repository.BoardRepository;
 
 public class BoardService {
-	private BoardRepository boardRepository = Container.boardRepository;
+	private BoardRepository boardRepository;
+	
+	public void init() {
+		boardRepository = Container.boardRepository;
+	}
 
 	public Board getBoardById(int boardId) {
 		Board board = boardRepository.getBoardById(boardId);
