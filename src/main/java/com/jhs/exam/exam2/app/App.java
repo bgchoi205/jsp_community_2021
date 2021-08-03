@@ -22,8 +22,6 @@ public class App implements ContainerComponent {
 		// 필수내용 불러오기
 		smtpGmailPw = Ut.getFileContents("c:/work/cbg/SmtpGmailPw.txt");
 		
-		System.out.println("smtpGmailPw : " + smtpGmailPw);
-		
 		if(smtpGmailPw != null && smtpGmailPw.trim().length() > 0) {
 			ready = true;
 		}

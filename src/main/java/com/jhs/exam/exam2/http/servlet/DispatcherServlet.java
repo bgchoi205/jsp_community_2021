@@ -36,8 +36,6 @@ abstract public class DispatcherServlet extends HttpServlet {
 			rq.print("올바른 요청이 아닙니다.");
 		}
 		
-		System.out.println(Container.app.isReady());
-		
 		if(Container.app.isReady() == false) {
 			rq.print("필수파일 만들었는지 체크해주세요.");
 			return;
