@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jhs.exam.exam2.app.App;
 import com.jhs.exam.exam2.container.Container;
 import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.http.controller.Controller;
@@ -33,6 +34,13 @@ abstract public class DispatcherServlet extends HttpServlet {
 			MysqlUtil.closeConnection();
 		}else {
 			rq.print("올바른 요청이 아닙니다.");
+		}
+		
+		System.out.println(Container.app.isReady());
+		
+		if(Container.app.isReady() == false) {
+			rq.print("필수파일 만들었는지 체크해주세요.");
+			return;
 		}
 	}
 	

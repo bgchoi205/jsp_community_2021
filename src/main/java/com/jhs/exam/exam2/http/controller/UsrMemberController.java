@@ -14,6 +14,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.jhs.exam.exam2.app.App;
 import com.jhs.exam.exam2.container.Container;
 import com.jhs.exam.exam2.dto.MailAuth;
 import com.jhs.exam.exam2.dto.Member;
@@ -91,7 +92,7 @@ public class UsrMemberController extends Controller {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.port", "587");
         
-        Authenticator auth = new MailAuth("choibk4938@gmail.com", "ptkmpvttlebnrdgr");
+        Authenticator auth = new MailAuth(Container.app.getSmtpGmailId(), Container.app.getSmtpGmailPw());
         
         Session session = Session.getDefaultInstance(prop, auth);
         
