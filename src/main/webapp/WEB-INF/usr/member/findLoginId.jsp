@@ -41,6 +41,17 @@
 						MemberFindId__submitDone = true;
 					}
 				</script>
+				<script>
+					function noSpaceForm(obj) { // 공백사용못하게
+					    var str_space = /\s/;  // 공백체크
+					    if(str_space.exec(obj.value)) { //공백 체크
+					        obj.value = obj.value.replace(' ',''); // 공백제거
+					        return false;
+					    }
+					 // input에 아래내용 추가
+					 // onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"
+					}
+				</script>
 				<form action="../member/doFindLoginId" method="POST"
 					onsubmit="MemberFindId__submit(this); return false;">
 					<div class="form-control">
@@ -49,7 +60,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="name" type="text" placeholder="이름을 입력해주세요." autofocus />
+								name="name" type="text" placeholder="이름을 입력해주세요." autofocus onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 
@@ -59,7 +70,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="email" type="text" placeholder="이메일을 입력해주세요." />
+								name="email" type="text" placeholder="이메일을 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 

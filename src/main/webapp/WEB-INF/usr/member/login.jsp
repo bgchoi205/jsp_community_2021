@@ -41,6 +41,16 @@
 						MemberLogin__submitDone = true;
 					}
 				</script>
+				<script>
+					function noSpaceForm(obj) {
+					    var str_space = /\s/;  // 공백체크
+					    if(str_space.exec(obj.value)) { //공백 체크
+					        obj.value = obj.value.replace(' ',''); // 공백제거
+					        return false;
+					    }
+					 // onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"
+					}
+				</script>
 				<form action="../member/doLogin" method="POST"
 					onsubmit="MemberLogin__submit(this); return false;">
 					<input type="hidden" name="redirectUri" value="${param.afterLoginUri}" />
@@ -50,7 +60,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="loginId" type="text" placeholder="로그인아이디를 입력해주세요." autofocus />
+								name="loginId" type="text" placeholder="로그인아이디를 입력해주세요." autofocus onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 
@@ -60,7 +70,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="loginPw" type="password" placeholder="로그인비밀번호를 입력해주세요." />
+								name="loginPw" type="password" placeholder="로그인비밀번호를 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 

@@ -69,6 +69,17 @@
 						MemberJoin__submitDone = true;
 					}
 				</script>
+				<script>
+					function noSpaceForm(obj) { // 공백사용못하게
+					    var str_space = /\s/;  // 공백체크
+					    if(str_space.exec(obj.value)) { //공백 체크
+					        obj.value = obj.value.replace(' ',''); // 공백제거
+					        return false;
+					    }
+					 // input에 아래내용 추가
+					 // onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"
+					}
+				</script>
 				<form action="../member/doJoin" method="POST"
 					onsubmit="MemberJoin__submit(this); return false;">
 					
@@ -94,7 +105,7 @@
 						</label>
 						<div class="flex items-center">
 							<input class="input input-bordered max-w-md" maxlength="100"
-								name="loginId" type="text" placeholder="아이디를 입력해주세요." />
+								name="loginId" type="text" placeholder="아이디를 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 							<div class="idCheckBtn btn btn-link text-sm">중복확인</div>
 							<div class="idCheckText text-red-500 font-bold pl-2">gg</div>
 						</div>
@@ -107,7 +118,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="loginPw" type="password" placeholder="비밀번호를 입력해주세요." />
+								name="loginPw" type="password" placeholder="비밀번호를 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 					
@@ -117,7 +128,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="name" type="text" placeholder="이름을 입력해주세요." />
+								name="name" type="text" placeholder="이름을 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 					
@@ -127,7 +138,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="nickname" type="text" placeholder="닉네임을 입력해주세요." />
+								name="nickname" type="text" placeholder="닉네임을 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 					
@@ -137,7 +148,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="email" type="email" placeholder="이메일을 입력해주세요." />
+								name="email" type="email" placeholder="이메일을 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 					
@@ -147,7 +158,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="cellphoneNo" type="tel" placeholder="전화번호를 입력해주세요." />
+								name="cellphoneNo" type="tel" placeholder="전화번호를 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 
