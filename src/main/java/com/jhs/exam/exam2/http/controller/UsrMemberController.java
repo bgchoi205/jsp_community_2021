@@ -69,6 +69,12 @@ public class UsrMemberController extends Controller {
 		case "doModifyMemberInfo":
 			actionDoModifyMemberInfo(rq);
 			break;
+		case "modifyMemberPw":
+			actionModifyMemberPw(rq);
+			break;
+		case "doModifyMemberPw":
+			actionDoModifyMemberPw(rq);
+			break;
 		case "doLoginIdCheck":
 			actionDoLoginIdCheck(rq);
 			break;
@@ -79,6 +85,65 @@ public class UsrMemberController extends Controller {
 	}
 
 	
+
+	private void actionDoModifyMemberPw(Rq rq) {
+		if(rq.isNotLogined()) {
+			rq.historyBack("로그인 후 이용해주세요.");
+			return;
+		}
+		
+		String loginPw = rq.getParam("loginPw", "");
+		String newLoginPw = rq.getParam("newLoginPw", "");
+		String checkLoginPw = rq.getParam("checkLoginPw", "");
+		
+		if (loginPw.length() == 0) {
+			rq.historyBack("loginPw를 입력해주세요.");
+			return;
+		}
+		
+		if (newLoginPw.length() == 0) {
+			rq.historyBack("newLoginPw를 입력해주세요.");
+			return;
+		}
+		
+		if (checkLoginPw.length() == 0) {
+			rq.historyBack("checkLoginPw를 입력해주세요.");
+			return;
+		}
+		
+		Member loginedMember = rq.getLoginedMember();
+		
+		if(loginPw.equals(loginedMember.getLoginPw()) == false) {
+			rq.historyBack("비밀번호가 틀립니다.");
+			return;
+		}
+		
+		if(newLoginPw.equals(checkLoginPw) == false) {
+			rq.historyBack("새 비밀번호를 다시 확인해주세요.");
+			return;
+		}
+		
+		int loginedMemberId = loginedMember.getId();
+		
+		memberService.modifyMemberPw(loginedMemberId, newLoginPw);
+		
+		Member modifiedMember = memberService.getMemberById(loginedMemberId);
+		
+		rq.setSessionAttr("loginedMemberJson", Ut.toJson(modifiedMember, ""));
+		
+		rq.replace("비밀번호 변경 완료", "../member/myPage");
+		
+	}
+
+	private void actionModifyMemberPw(Rq rq) {
+		if(rq.isNotLogined()) {
+			rq.historyBack("로그인 후 이용해주세요.");
+			return;
+		}
+		
+		rq.jsp("usr/member/modifyMemberPw");
+		
+	}
 
 	private void actionDoModifyMemberInfo(Rq rq) {
 		if(rq.isNotLogined()) {

@@ -111,4 +111,13 @@ public class MemberRepository implements ContainerComponent {
 		return MysqlUtil.selectRow(sql, Member.class);
 	}
 
+	public void modifyMemberPw(int loginedMemberId, String newLoginPw) {
+		SecSql sql = new SecSql();
+		sql.append("UPDATE `member`");
+		sql.append("SET loginPw = ?", newLoginPw);
+		sql.append("WHERE id = ?", loginedMemberId);
+		
+		MysqlUtil.update(sql);
+	}
+
 }

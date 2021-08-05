@@ -101,4 +101,8 @@ public class MemberService implements ContainerComponent {
 		return memberRepository.getMemberById(loginedMemberId);
 	}
 
+	public void modifyMemberPw(int loginedMemberId, String newLoginPw) {
+		memberRepository.modifyMemberPw(loginedMemberId, newLoginPw);
+	}
+
 }

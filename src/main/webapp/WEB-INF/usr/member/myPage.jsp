@@ -43,7 +43,7 @@
 			</div>
 			<div class="px-6 mb-4">
 				<a href="../member/modifyMemberInfo" class="link link-hover link-primary">정보수정</a>
-				<a class="link link-hover link-primary ml-6">비밀번호 변경</a>
+				<a href="../member/modifyMemberPw" class="link link-hover link-primary ml-6">비밀번호 변경</a>
 			</div>
 		</div>
 	</div>
