@@ -60,7 +60,13 @@ public class UsrMemberController extends Controller {
 		case "doFindLoginPw":
 			actionDoFindLoginPw(rq);
 			break;
-		case "loginIdCheck":
+		case "myPage":
+			actionMyPage(rq);
+			break;
+		case "modifyMemberInfo":
+			actionModifyMemberInfo(rq);
+			break;
+		case "doLoginIdCheck":
 			actionDoLoginIdCheck(rq);
 			break;
 		default:
@@ -68,6 +74,34 @@ public class UsrMemberController extends Controller {
 			break;
 		}
 	}
+
+	
+
+	private void actionModifyMemberInfo(Rq rq) {
+		if(rq.isNotLogined()) {
+			rq.historyBack("로그인 후 이용해주세요.");
+			return;
+		}
+		
+		Member loginedMember = rq.getLoginedMember();
+		
+		rq.setAttr("loginedMember", loginedMember);
+		rq.jsp("usr/member/modifyMemberInfo");
+	}
+	
+	
+	private void actionMyPage(Rq rq) {
+		if(rq.isNotLogined()) {
+			rq.historyBack("로그인 후 이용해주세요.");
+			return;
+		}
+		
+		Member loginedMember = rq.getLoginedMember();
+		
+		rq.setAttr("loginedMember", loginedMember);
+		rq.jsp("usr/member/myPage");
+	}
+	
 
 	private void actionDoLoginIdCheck(Rq rq) {
 		
