@@ -66,6 +66,9 @@ public class UsrMemberController extends Controller {
 		case "modifyMemberInfo":
 			actionModifyMemberInfo(rq);
 			break;
+		case "doModifyMemberInfo":
+			actionDoModifyMemberInfo(rq);
+			break;
 		case "doLoginIdCheck":
 			actionDoLoginIdCheck(rq);
 			break;
@@ -76,6 +79,50 @@ public class UsrMemberController extends Controller {
 	}
 
 	
+
+	private void actionDoModifyMemberInfo(Rq rq) {
+		if(rq.isNotLogined()) {
+			rq.historyBack("로그인 후 이용해주세요.");
+			return;
+		}
+		
+		Member loginedMember = rq.getLoginedMember();
+		int loginedMemberId = loginedMember.getId();
+		
+		String name = rq.getParam("name", "");
+		String nickname = rq.getParam("nickname", "");
+		String email = rq.getParam("email", "");
+		String cellphoneNo = rq.getParam("cellphoneNo", "");
+		
+		
+		if (name.length() == 0) {
+			rq.historyBack("name을 입력해주세요.");
+			return;
+		}
+		
+		if (nickname.length() == 0) {
+			rq.historyBack("nickname을 입력해주세요.");
+			return;
+		}
+		
+		if (email.length() == 0) {
+			rq.historyBack("email을 입력해주세요.");
+			return;
+		}
+		
+		if (cellphoneNo.length() == 0) {
+			rq.historyBack("cellphoneNo를 입력해주세요.");
+			return;
+		}
+
+		memberService.ModifyMemberInfo(name, nickname, email, cellphoneNo, loginedMemberId);
+		
+		Member modifiedMember = memberService.getMemberById(loginedMemberId);
+		
+		rq.setSessionAttr("loginedMemberJson", Ut.toJson(modifiedMember, ""));
+		
+		rq.replace("정보수정 완료", "../member/myPage");
+	}
 
 	private void actionModifyMemberInfo(Rq rq) {
 		if(rq.isNotLogined()) {

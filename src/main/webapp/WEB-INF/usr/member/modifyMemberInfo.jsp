@@ -17,9 +17,9 @@
 
 			<div class="px-2 py-4">
 				<script>
-					let MemberJoin__submitDone = false;
-					function MemberJoin__submit(form) {
-						if (MemberJoin__submitDone) {
+					let ModifyMemberInfo__submitDone = false;
+					function ModifyMemberInfo__submit(form) {
+						if (ModifyMemberInfo__submitDone) {
 							return;
 						}
 
@@ -53,7 +53,7 @@
 						}
 
 						form.submit();
-						MemberJoin__submitDone = true;
+						ModifyMemberInfo__submitDone = true;
 					}
 				</script>
 				<script>
@@ -68,7 +68,7 @@
 					}
 				</script>
 				<form action="../member/doModifyMemberInfo" method="POST"
-					onsubmit="MemberJoin__submit(this); return false;">
+					onsubmit="ModifyMemberInfo__submit(this); return false;">
 					
 					<div class="form-control">
 						<label class="label">
@@ -76,7 +76,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="name" type="text" placeholder="이름을 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
+								name="name" type="text" placeholder="이름을 입력해주세요." value="${loginedMember.name}" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 					
@@ -86,7 +86,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="nickname" type="text" placeholder="닉네임을 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
+								name="nickname" type="text" placeholder="닉네임을 입력해주세요." value="${loginedMember.nickname}"  onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 					
@@ -96,7 +96,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="email" type="email" placeholder="이메일을 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
+								name="email" type="email" placeholder="이메일을 입력해주세요." value="${loginedMember.email}" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 					
@@ -106,7 +106,7 @@
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100"
-								name="cellphoneNo" type="tel" placeholder="전화번호를 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
+								name="cellphoneNo" type="tel" placeholder="전화번호를 입력해주세요." value="${loginedMember.cellphoneNo}" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 						</div>
 					</div>
 

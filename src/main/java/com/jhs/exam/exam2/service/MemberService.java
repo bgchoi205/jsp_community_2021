@@ -93,4 +93,12 @@ public class MemberService implements ContainerComponent {
 		return loginedMember.getAuthLevel()  >= 7;
 	}
 
+	public void ModifyMemberInfo(String name, String nickname, String email, String cellphoneNo, int loginedMemberId) {
+		memberRepository.modifyMemberInfo(name, nickname, email, cellphoneNo, loginedMemberId);
+	}
+
+	public Member getMemberById(int loginedMemberId) {
+		return memberRepository.getMemberById(loginedMemberId);
+	}
+
 }
