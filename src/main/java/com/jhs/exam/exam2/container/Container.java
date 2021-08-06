@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jhs.exam.exam2.app.App;
+import com.jhs.exam.exam2.http.controller.AdmArticleController;
 import com.jhs.exam.exam2.http.controller.AdmHomeController;
 import com.jhs.exam.exam2.http.controller.TestMailController;
 import com.jhs.exam.exam2.http.controller.UsrArticleController;
@@ -44,6 +45,7 @@ public class Container {
 	
 	public static UsrHomeController usrHomeController;
 	public static AdmHomeController  admHomeController;
+	public static AdmArticleController  admArticleController;
 	
 	public static void init() {
 		containerComponents = new ArrayList<>();
@@ -66,6 +68,7 @@ public class Container {
 		usrMemberController = addContainerComponent(new UsrMemberController());
 		usrHomeController = addContainerComponent(new UsrHomeController());
 		admHomeController = addContainerComponent(new AdmHomeController());
+		admArticleController = addContainerComponent(new AdmArticleController());
 		testMailController = addContainerComponent(new TestMailController());
 		
 		// 객체 초기화

@@ -60,7 +60,8 @@ abstract public class DispatcherServlet extends HttpServlet {
 			switch (rq.getControllerName()) {
 			case "home":
 				return Container.admHomeController;
-
+			case "article":
+				return Container.admArticleController;
 			}
 			break;
 		case "test":

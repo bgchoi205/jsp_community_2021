@@ -19,6 +19,7 @@ public class NeedAdminInterceptor extends Interceptor {
 		
 		case "/adm/member/login":
 		case "/adm/member/doLogin":
+		case "/adm/article/list":
 		
 			return true;
 		}

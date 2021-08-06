@@ -107,7 +107,7 @@
 							<input class="input input-bordered max-w-md" maxlength="100"
 								name="loginId" type="text" placeholder="아이디를 입력해주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 							<div class="idCheckBtn btn btn-link text-sm">중복확인</div>
-							<div class="idCheckText text-red-500 font-bold pl-2">gg</div>
+							<div class="idCheckText text-red-500 font-bold pl-2"></div>
 						</div>
 						
 					</div>
